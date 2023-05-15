@@ -119,27 +119,13 @@ public class GameSceneManager : MonoBehaviour
         isPlaying = true;
     }
 
-    // public void GenerateNumber()
-    // {
-    //     string binaryNum = "";
-    //     int binarySum = 0;
-    //     for (int x = 0; x < numLength; x++)
-    //     {
-    //         int val = Random.Range(0, 2);
-    //         if (val == 0)
-    //         {
-    //             binaryNum = binaryNum + "0";
-    //         }
-    //         else
-    //         {
-    //             binaryNum = binaryNum + "1";
-    //             binarySum++;
-    //         }
-    //     }
-    //     currentIsGood = binarySum % 2 == 0;
-    // }
     public void GenerateNumber()
     {
+        foreach (TextMeshProUGUI digit in Digits)
+        {
+            digit.text = "?";
+        }
+
         binaryNum = "";
         for (int x = 0; x < 4; x++)
         {
@@ -173,34 +159,18 @@ public class GameSceneManager : MonoBehaviour
     public void SubmitAnswer()
     {
         audioManager.PlaySelectSound();
+        string guess = Digits[0].text + Digits[1].text + Digits[2].text + Digits[3].text;
+        if (guess == binaryNum)
+        {
+            CorrectAnswer();
+        }
+        else
+        {
+            HUDGameOverText.text = "WRONG! The number is " + binaryNum + ".";
+            GameOver();
+        }
+        HUDScore.text = currentScore.ToString();
     }
-
-    // public void SelectGood()
-    // {
-    //     if (currentIsGood)
-    //     {
-    //         CorrectAnswer();
-    //     }
-    //     else
-    //     {
-    //         HUDGameOverText.text = "WRONG!";
-    //         GameOver();
-    //     }
-    //     HUDScore.text = currentScore.ToString();
-    // }
-    // public void SelectBad()
-    // {
-    //     if (!currentIsGood)
-    //     {
-    //         CorrectAnswer();
-    //     }
-    //     else
-    //     {
-    //         HUDGameOverText.text = "WRONG!";
-    //         GameOver();
-    //     }
-    //     HUDScore.text = currentScore.ToString();
-    // }
 
     public void CorrectAnswer()
     {
