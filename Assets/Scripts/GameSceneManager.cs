@@ -191,4 +191,14 @@ public class GameSceneManager : MonoBehaviour
         HUDReplay.GetComponent<MoveNormal>().MoveUp();
         HUDPlayButtons.GetComponent<MoveNormal>().MoveDown();
     }
+
+    public void SelectHome()
+    {
+        audioManager.PlaySelectSound();
+        HUDGameOver.GetComponent<MoveNormal>().MoveUp();
+        HUDTitle.GetComponent<MoveNormal>().MoveDown();
+        HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
+        HUDGame.GetComponent<MoveNormal>().MoveUp();
+        HUDPlayButtons.GetComponent<MoveNormal>().MoveUp();
+    }
 }
