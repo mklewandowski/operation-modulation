@@ -40,10 +40,13 @@ public class GameSceneManager : MonoBehaviour
     GameObject[] GraphPoints;
     string binaryNum;
 
+    [SerializeField]
+    GameObject Graph;
+
     bool isPlaying = false;
     int currentScore = 0;
     float correctTimer = 0f;
-    float correctTimerMax = 1f;
+    float correctTimerMax = 2f;
 
     int tutorialNum = 0;
     string[] tutorialStrings = {
@@ -72,6 +75,7 @@ public class GameSceneManager : MonoBehaviour
             if (correctTimer < 0)
             {
                 HUDCorrect.SetActive(false);
+                Graph.SetActive(true);
             }
         }
     }
@@ -158,6 +162,8 @@ public class GameSceneManager : MonoBehaviour
 
     public void SubmitAnswer()
     {
+        if (correctTimer > 0)
+            return;
         audioManager.PlaySelectSound();
         string guess = Digits[0].text + Digits[1].text + Digits[2].text + Digits[3].text;
         if (guess == binaryNum)
@@ -180,6 +186,7 @@ public class GameSceneManager : MonoBehaviour
         HUDCorrect.SetActive(true);
         HUDCorrect.GetComponent<GrowAndShrink>().StartEffect();
         correctTimer = correctTimerMax;
+        Graph.SetActive(false);
         GenerateNumber();
     }
 
