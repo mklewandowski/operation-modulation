@@ -539,6 +539,16 @@ MonoBehaviour:
   - {fileID: 876453235}
   - {fileID: 79175491}
   - {fileID: 109304161}
+  GraphPoints:
+  - {fileID: 2035342903}
+  - {fileID: 858663359}
+  - {fileID: 665950754}
+  - {fileID: 170419645}
+  - {fileID: 639468840}
+  - {fileID: 2024641735}
+  - {fileID: 794843776}
+  - {fileID: 229914043}
+  - {fileID: 795750426}
 --- !u!4 &94470846
 Transform:
   m_ObjectHideFlags: 0

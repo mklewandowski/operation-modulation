@@ -36,6 +36,9 @@ public class GameSceneManager : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI[] Digits;
+    [SerializeField]
+    GameObject[] GraphPoints;
+    string binaryNum;
 
     bool isPlaying = false;
     int currentScore = 0;
@@ -137,7 +140,24 @@ public class GameSceneManager : MonoBehaviour
     // }
     public void GenerateNumber()
     {
-
+        binaryNum = "";
+        for (int x = 0; x < 4; x++)
+        {
+            int val = Random.Range(0, 2);
+            if (val == 0)
+            {
+                binaryNum = binaryNum + "0";
+                GraphPoints[x * 2 + 1].transform.localPosition = new Vector3(GraphPoints[x * 2 + 1].transform.localPosition.x, .5f, 0);
+                GraphPoints[x * 2 + 2].transform.localPosition = new Vector3(GraphPoints[x * 2 + 2].transform.localPosition.x, -.5f, 0);
+            }
+            else
+            {
+                binaryNum = binaryNum + "1";
+                GraphPoints[x * 2 + 1].transform.localPosition = new Vector3(GraphPoints[x * 2 + 1].transform.localPosition.x, 2f, 0);
+                GraphPoints[x * 2 + 2].transform.localPosition = new Vector3(GraphPoints[x * 2 + 2].transform.localPosition.x, -2f, 0);
+            }
+        }
+        Debug.Log(binaryNum);
     }
 
     public void SetDigit(int digitNum)
