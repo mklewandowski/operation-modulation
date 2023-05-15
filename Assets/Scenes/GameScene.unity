@@ -3107,8 +3107,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Computers store information as binary numbers. \r\n\r\nBinary numbers
-    are made up of 0s and 1s. \r\n\r\nThey looks like this: \r\n\r\n00101\r\n10110\r\n11001"
+  m_text: Modulation is used to transmit binary numbers (0s and 1s) over radio waves.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 132413589c6147849ab581ed843c8b56, type: 2}
   m_sharedMaterial: {fileID: 3341469875057839004, guid: 132413589c6147849ab581ed843c8b56, type: 2}

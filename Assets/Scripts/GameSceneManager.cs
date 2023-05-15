@@ -50,11 +50,9 @@ public class GameSceneManager : MonoBehaviour
 
     int tutorialNum = 0;
     string[] tutorialStrings = {
-        "Computers store data as binary numbers.\n\nBinary numbers are made up of 0s and 1s.\n\nThey looks like this:\n\n00101\n10110\n11001",
-        "Computers send data back and forth across the world. Sometimes this data gets corrupted.\n\nHow does a computer tell if data is good or bad? How does a computer tell if data is corrupted?\n\nOne method is a parity bit.",
-        "A parity bit is a 0 or 1 added to the end of a binary number. For example, using even parity, a 0 or 1 is added to the end of a binary number so that ALL of the digits add up to an EVEN number.\n\n0001 becomes 00011\n0011 becomes 00110",
-        "When a computer receives data, it checks each binary number. If the digits add up to an even number, the data is likely still good. If the digits add up to an odd number, the data is bad.\n\n00011 is GOOD because...\n0+0+1+1=2 which is EVEN\n\n0010 is BAD because...\n0+0+1+0=1 which is ODD",
-        "Now you try! A parity bit has been added to our binary numbers. The sum of the digits should be an even number. Act fast and decide if the information is good or bad.\n\nReady?"
+        "Modulation is used to transmit binary numbers (0s and 1s) over radio waves.",
+        "The shape of the graph determines if a 0 or a 1 is being sent.",
+        "Now you try! Amplitude Shift Keying has been used to send binary numbers over a radio wave. Try to decode each binary number.\n\nReady?"
     };
 
 
