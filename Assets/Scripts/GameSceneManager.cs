@@ -24,10 +24,6 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI HUDScore;
     [SerializeField]
-    RectTransform HUDTimer;
-    [SerializeField]
-    TextMeshProUGUI BinaryNumber;
-    [SerializeField]
     GameObject HUDCorrect;
     [SerializeField]
     GameObject HUDGameOver;
@@ -38,14 +34,11 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     GameObject HUDPlayButtons;
 
-    int numLength = 4;
-    bool currentIsGood = true;
-    int currentScore = 0;
-    float gameTimer = 5f;
-    bool isPlaying = false;
-    float timerSizeMax = 380f;
-    float gameTimerMax = 5f;
+    [SerializeField]
+    TextMeshProUGUI[] Digits;
 
+    bool isPlaying = false;
+    int currentScore = 0;
     float correctTimer = 0f;
     float correctTimerMax = 1f;
 
@@ -70,18 +63,6 @@ public class GameSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPlaying)
-        {
-            gameTimer -= Time.deltaTime;
-            if (gameTimer < 0)
-            {
-                gameTimer = 0;
-                HUDGameOverText.text = "OUT OF TIME!";
-                GameOver();
-            }
-            HUDTimer.sizeDelta = new Vector2(timerSizeMax * gameTimer / gameTimerMax, HUDTimer.sizeDelta.y);
-        }
-
         if (correctTimer > 0)
         {
             correctTimer -= Time.deltaTime;
@@ -128,8 +109,6 @@ public class GameSceneManager : MonoBehaviour
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
         HUDReplay.GetComponent<MoveNormal>().MoveDown();
         currentScore = 0;
-        numLength = 4;
-        gameTimerMax = 5f;
         HUDScore.text = currentScore.ToString();
         GenerateNumber();
         HUDGame.GetComponent<MoveNormal>().MoveDown();
@@ -137,67 +116,76 @@ public class GameSceneManager : MonoBehaviour
         isPlaying = true;
     }
 
+    // public void GenerateNumber()
+    // {
+    //     string binaryNum = "";
+    //     int binarySum = 0;
+    //     for (int x = 0; x < numLength; x++)
+    //     {
+    //         int val = Random.Range(0, 2);
+    //         if (val == 0)
+    //         {
+    //             binaryNum = binaryNum + "0";
+    //         }
+    //         else
+    //         {
+    //             binaryNum = binaryNum + "1";
+    //             binarySum++;
+    //         }
+    //     }
+    //     currentIsGood = binarySum % 2 == 0;
+    // }
     public void GenerateNumber()
     {
-        string binaryNum = "";
-        int binarySum = 0;
-        for (int x = 0; x < numLength; x++)
-        {
-            int val = Random.Range(0, 2);
-            if (val == 0)
-            {
-                binaryNum = binaryNum + "0";
-            }
-            else
-            {
-                binaryNum = binaryNum + "1";
-                binarySum++;
-            }
-        }
-        BinaryNumber.text = binaryNum;
-        currentIsGood = binarySum % 2 == 0;
-        gameTimer = gameTimerMax;
+
     }
 
-    public void SelectGood()
+    public void SetDigit(int digitNum)
     {
-        if (currentIsGood)
-        {
-            CorrectAnswer();
-        }
+        audioManager.PlayMenuSound();
+        string currDigit = Digits[digitNum].text;
+        if (currDigit == "?" || currDigit == "1")
+            Digits[digitNum].text = "0";
         else
-        {
-            HUDGameOverText.text = "WRONG!";
-            GameOver();
-        }
-        HUDScore.text = currentScore.ToString();
+            Digits[digitNum].text = "1";
     }
-    public void SelectBad()
+
+    public void SubmitAnswer()
     {
-        if (!currentIsGood)
-        {
-            CorrectAnswer();
-        }
-        else
-        {
-            HUDGameOverText.text = "WRONG!";
-            GameOver();
-        }
-        HUDScore.text = currentScore.ToString();
+        audioManager.PlaySelectSound();
     }
+
+    // public void SelectGood()
+    // {
+    //     if (currentIsGood)
+    //     {
+    //         CorrectAnswer();
+    //     }
+    //     else
+    //     {
+    //         HUDGameOverText.text = "WRONG!";
+    //         GameOver();
+    //     }
+    //     HUDScore.text = currentScore.ToString();
+    // }
+    // public void SelectBad()
+    // {
+    //     if (!currentIsGood)
+    //     {
+    //         CorrectAnswer();
+    //     }
+    //     else
+    //     {
+    //         HUDGameOverText.text = "WRONG!";
+    //         GameOver();
+    //     }
+    //     HUDScore.text = currentScore.ToString();
+    // }
 
     public void CorrectAnswer()
     {
         audioManager.PlayCorrectSound();
         currentScore++;
-        if (currentScore == 5 || currentScore == 10 || currentScore == 20 || currentScore == 40)
-        {
-            numLength++;
-        }
-        if (currentScore == 8 || currentScore == 16 || currentScore == 24 || currentScore == 32)
-        {
-            gameTimerMax = gameTimerMax - .5f;
-        }
         HUDCorrect.transform.localScale = new Vector3(.1f, .1f, .1f);
         HUDCorrect.SetActive(true);
         HUDCorrect.GetComponent<GrowAndShrink>().StartEffect();
