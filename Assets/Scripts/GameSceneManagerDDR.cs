@@ -63,7 +63,7 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     bool isPlaying = false;
     int currentScore = 0;
-    float speed = 200f;
+    float speed = 150f;
     List<GameObject> graphChunks = new List<GameObject>();
     int prevBinaryVal = 0;
 
@@ -93,16 +93,29 @@ public class GameSceneManagerDDR : MonoBehaviour
             float xPos = 0;
             foreach (GameObject go in graphChunks)
             {
+                GraphChunk graphChunk = go.GetComponent<GraphChunk>();
                 go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
                 if (go.transform.localPosition.x < -700f)
                 {
                     removeFirst = true;
                 }
-                else if (go.transform.localPosition.x < 500f && !go.GetComponent<GraphChunk>().HasTriggeredNext)
+                else if (go.transform.localPosition.x < 500f && !graphChunk.HasTriggeredNext)
                 {
                     go.GetComponent<GraphChunk>().HasTriggeredNext = true;
                     xPos = go.transform.localPosition.x + 300f;
                     addNew = true;
+                }
+                else if (go.transform.localPosition.x <= 100f && go.transform.localPosition.x >= -100f && !graphChunk.IsActive)
+                {
+                    graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
+                    graphChunk.IsActive = true;
+                    graphChunk.BackImage.SetActive(true);
+                }
+                else if (go.transform.localPosition.x < -100f && graphChunk.IsActive)
+                {
+                    graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
+                    graphChunk.IsActive = false;
+                    graphChunk.BackImage.SetActive(false);
                 }
                 index++;
             }
