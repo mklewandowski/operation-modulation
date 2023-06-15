@@ -136,6 +136,11 @@ public class GameSceneManagerDDR : MonoBehaviour
                 GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
                 prevBinaryVal = currentBinaryVal;
             }
+
+            if (Input.GetKeyDown("0"))
+                GuessZero();
+            else if (Input.GetKeyDown("1"))
+                GuessOne();
         }
     }
 
