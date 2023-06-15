@@ -11,6 +11,7 @@ public class GraphChunk : MonoBehaviour
     public Image GraphImage2;
     public bool HasTriggeredNext = false;
     public bool IsActive = false;
+    public int BinaryVal = 0;
 
     // Start is called before the first frame update
     void Start()

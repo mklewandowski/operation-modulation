@@ -63,9 +63,12 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     bool isPlaying = false;
     int currentScore = 0;
-    float speed = 150f;
+    float speed = 200f;
     List<GameObject> graphChunks = new List<GameObject>();
     int prevBinaryVal = 0;
+
+    int currentHighlightValue = -1;
+    bool haveGuessedThisHighlight = false;
 
     int tutorialNum = 0;
     string[] tutorialStrings = {
@@ -110,9 +113,12 @@ public class GameSceneManagerDDR : MonoBehaviour
                     graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
                     graphChunk.IsActive = true;
                     graphChunk.BackImage.SetActive(true);
+                    currentHighlightValue = graphChunk.BinaryVal;
+                    haveGuessedThisHighlight = false;
                 }
                 else if (go.transform.localPosition.x < -100f && graphChunk.IsActive)
                 {
+                    currentHighlightValue = -1;
                     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
                     graphChunk.IsActive = false;
                     graphChunk.BackImage.SetActive(false);
@@ -192,6 +198,7 @@ public class GameSceneManagerDDR : MonoBehaviour
                 ? prevVal == 0 ? ASKZeroZeroSprite : ASKOneZeroSprite
                 : prevVal == 0 ? ASKZeroOneSprite : ASKOneOneSprite;
             go.GetComponent<GraphChunk>().GraphImage2.sprite = currVal == 0 ? ASKZeroEndSprite : ASKOneEndSprite;
+            go.GetComponent<GraphChunk>().BinaryVal = currVal;
             string debugstring = currVal == 0 ? "ASK O" : "ASK 1";
             Debug.Log(debugstring);
             graphChunks.Add(go);
@@ -202,6 +209,7 @@ public class GameSceneManagerDDR : MonoBehaviour
             GameObject go = Instantiate(FSKChunkPrefab, new Vector3(xPos, 0, 0), Quaternion.identity, GraphContainer.transform);
             go.transform.localPosition = new Vector3(xPos, 0, 0);
             go.GetComponent<GraphChunk>().GraphImage1.sprite = currVal == 0 ? FSKZeroSprite : FSKOneSprite;
+            go.GetComponent<GraphChunk>().BinaryVal = currVal;
             string debugstring = currVal == 0 ? "FSK O" : "FSK 1";
             Debug.Log(debugstring);
             graphChunks.Add(go);
@@ -223,5 +231,59 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDTitle.GetComponent<MoveNormal>().MoveDown();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
         HUDGame.GetComponent<MoveNormal>().MoveUp();
+    }
+
+    public void GuessOne()
+    {
+        if (haveGuessedThisHighlight)
+        {
+            Strike();
+            return;
+        }
+        else
+        {
+            if (currentHighlightValue == 1)
+            {
+                currentScore++;
+                UpdateScore();
+            }
+            else
+            {
+                Strike();
+            }
+        }
+        haveGuessedThisHighlight = true;
+    }
+
+    public void GuessZero()
+    {
+        if (haveGuessedThisHighlight)
+        {
+            Strike();
+            return;
+        }
+        else
+        {
+            if (currentHighlightValue == 0)
+            {
+                currentScore++;
+                UpdateScore();
+            }
+            else
+            {
+                Strike();
+            }
+        }
+        haveGuessedThisHighlight = true;
+    }
+
+    void Strike()
+    {
+
+    }
+
+    void UpdateScore()
+    {
+        HUDScore.text = currentScore.ToString();
     }
 }
