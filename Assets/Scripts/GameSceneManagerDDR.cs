@@ -63,6 +63,8 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     bool isPlaying = false;
     int currentScore = 0;
+    float speed = 200f;
+    List<GameObject> graphChunks = new List<GameObject>();
 
     int tutorialNum = 0;
     string[] tutorialStrings = {
@@ -82,7 +84,37 @@ public class GameSceneManagerDDR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isPlaying)
+        {
+            int index = 0;
+            bool removeFirst = false;
+            bool addNew = false;
+            float xPos = 0;
+            foreach (GameObject go in graphChunks)
+            {
+                go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
+                if (go.transform.localPosition.x < -700f)
+                {
+                    removeFirst = true;
+                }
+                else if (go.transform.localPosition.x < 500f && !go.GetComponent<GraphChunk>().HasTriggeredNext)
+                {
+                    go.GetComponent<GraphChunk>().HasTriggeredNext = true;
+                    xPos = go.transform.localPosition.x + 300f;
+                    addNew = true;
+                }
+                index++;
+            }
+            if (removeFirst)
+            {
+                Destroy(graphChunks[0]);
+                graphChunks.RemoveAt(0);
+            }
+            if (addNew)
+            {
+                GenerateGraphChunk(xPos);
+            }
+        }
     }
 
     public void StartTutorial()
@@ -123,15 +155,15 @@ public class GameSceneManagerDDR : MonoBehaviour
         currentScore = 0;
         HUDScore.text = currentScore.ToString();
 
-        GenerateGraphChunk();
+        GenerateGraphChunk(700f);
 
         HUDGame.GetComponent<MoveNormal>().MoveDown();
         isPlaying = true;
     }
 
-    void GenerateGraphChunk()
+    void GenerateGraphChunk(float xPos)
     {
-        bool isASK = true;
+        bool isASK = false;
 
         if (isASK)
         {
@@ -160,11 +192,12 @@ public class GameSceneManagerDDR : MonoBehaviour
         {
             int binaryVal = Random.Range(0, 2);
             ChunkType chunkType = binaryVal == 0 ? ChunkType.ASKZero : ChunkType.ASKOne;
-            GameObject go = Instantiate(FSKChunkPrefab, new Vector3(500f, 0, 0), Quaternion.identity, GraphContainer.transform);
-            go.transform.localPosition = new Vector3(0, 0, 0);
+            GameObject go = Instantiate(FSKChunkPrefab, new Vector3(xPos, 0, 0), Quaternion.identity, GraphContainer.transform);
+            go.transform.localPosition = new Vector3(xPos, 0, 0);
             go.GetComponent<GraphChunk>().GraphImage1.sprite = binaryVal == 0 ? FSKZeroSprite : FSKOneSprite;
             string debugstring = binaryVal == 0 ? "FSK O" : "FSK 1";
             Debug.Log(debugstring);
+            graphChunks.Add(go);
         }
     }
 
