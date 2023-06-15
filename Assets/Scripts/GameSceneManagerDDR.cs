@@ -65,6 +65,7 @@ public class GameSceneManagerDDR : MonoBehaviour
     int currentScore = 0;
     float speed = 200f;
     List<GameObject> graphChunks = new List<GameObject>();
+    int prevBinaryVal = 0;
 
     int tutorialNum = 0;
     string[] tutorialStrings = {
@@ -112,7 +113,9 @@ public class GameSceneManagerDDR : MonoBehaviour
             }
             if (addNew)
             {
-                GenerateGraphChunk(xPos);
+                int currentBinaryVal = Random.Range(0, 2);
+                GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
+                prevBinaryVal = currentBinaryVal;
             }
         }
     }
@@ -155,47 +158,38 @@ public class GameSceneManagerDDR : MonoBehaviour
         currentScore = 0;
         HUDScore.text = currentScore.ToString();
 
-        GenerateGraphChunk(700f);
+        int currentBinaryVal = Random.Range(0, 2);
+        prevBinaryVal = currentBinaryVal;
+        GenerateGraphChunk(currentBinaryVal, prevBinaryVal, 700f);
 
         HUDGame.GetComponent<MoveNormal>().MoveDown();
         isPlaying = true;
     }
 
-    void GenerateGraphChunk(float xPos)
+    void GenerateGraphChunk(int currVal, int prevVal, float xPos)
     {
-        bool isASK = false;
+        bool isASK = true;
 
         if (isASK)
         {
-            int binaryVal = Random.Range(0, 2);
-            ChunkType chunkType = binaryVal == 0 ? ChunkType.ASKZero : ChunkType.ASKOne;
-            GameObject go = Instantiate(ASKChunkPrefab, new Vector3(500f, 0, 0), Quaternion.identity, GraphContainer.transform);
-            go.transform.localPosition = new Vector3(0, 0, 0);
-            go.GetComponent<GraphChunk>().GraphImage1.sprite = binaryVal == 0 ? ASKZeroZeroSprite : ASKOneOneSprite;
-            go.GetComponent<GraphChunk>().GraphImage2.sprite = binaryVal == 0 ? ASKZeroEndSprite : ASKOneEndSprite;
-            string debugstring = binaryVal == 0 ? "ASK O" : "ASK 1";
+            ChunkType chunkType2 = currVal == 0 ? ChunkType.ASKZero : ChunkType.ASKOne;
+            GameObject go = Instantiate(ASKChunkPrefab, new Vector3(xPos, 0, 0), Quaternion.identity, GraphContainer.transform);
+            go.transform.localPosition = new Vector3(xPos, 0, 0);
+            go.GetComponent<GraphChunk>().GraphImage1.sprite = currVal == 0
+                ? prevVal == 0 ? ASKZeroZeroSprite : ASKOneZeroSprite
+                : prevVal == 0 ? ASKZeroOneSprite : ASKOneOneSprite;
+            go.GetComponent<GraphChunk>().GraphImage2.sprite = currVal == 0 ? ASKZeroEndSprite : ASKOneEndSprite;
+            string debugstring = currVal == 0 ? "ASK O" : "ASK 1";
             Debug.Log(debugstring);
-
-
-            int binaryVal2 = Random.Range(0, 2);
-            ChunkType chunkType2 = binaryVal2 == 0 ? ChunkType.ASKZero : ChunkType.ASKOne;
-            GameObject go2 = Instantiate(ASKChunkPrefab, new Vector3(500f, 0, 0), Quaternion.identity, GraphContainer.transform);
-            go2.transform.localPosition = new Vector3(300f, 0, 0);
-            go2.GetComponent<GraphChunk>().GraphImage1.sprite = binaryVal2 == 0
-                ? binaryVal == 0 ? ASKZeroZeroSprite : ASKOneZeroSprite
-                : binaryVal == 0 ? ASKZeroOneSprite : ASKOneOneSprite;
-            go2.GetComponent<GraphChunk>().GraphImage2.sprite = binaryVal2 == 0 ? ASKZeroEndSprite : ASKOneEndSprite;
-            debugstring = binaryVal2 == 0 ? "ASK O" : "ASK 1";
-            Debug.Log(debugstring);
+            graphChunks.Add(go);
         }
         else
         {
-            int binaryVal = Random.Range(0, 2);
-            ChunkType chunkType = binaryVal == 0 ? ChunkType.ASKZero : ChunkType.ASKOne;
+            ChunkType chunkType = currVal == 0 ? ChunkType.ASKZero : ChunkType.ASKOne;
             GameObject go = Instantiate(FSKChunkPrefab, new Vector3(xPos, 0, 0), Quaternion.identity, GraphContainer.transform);
             go.transform.localPosition = new Vector3(xPos, 0, 0);
-            go.GetComponent<GraphChunk>().GraphImage1.sprite = binaryVal == 0 ? FSKZeroSprite : FSKOneSprite;
-            string debugstring = binaryVal == 0 ? "FSK O" : "FSK 1";
+            go.GetComponent<GraphChunk>().GraphImage1.sprite = currVal == 0 ? FSKZeroSprite : FSKOneSprite;
+            string debugstring = currVal == 0 ? "FSK O" : "FSK 1";
             Debug.Log(debugstring);
             graphChunks.Add(go);
         }
