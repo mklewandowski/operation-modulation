@@ -98,7 +98,7 @@ public class GameSceneManagerDDR : MonoBehaviour
             {
                 GraphChunk graphChunk = go.GetComponent<GraphChunk>();
                 go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
-                if (go.transform.localPosition.x < -700f)
+                if (go.transform.localPosition.x < -362f)
                 {
                     removeFirst = true;
                 }
@@ -108,21 +108,21 @@ public class GameSceneManagerDDR : MonoBehaviour
                     xPos = go.transform.localPosition.x + 300f;
                     addNew = true;
                 }
-                else if (go.transform.localPosition.x <= 100f && go.transform.localPosition.x >= -100f && !graphChunk.IsActive)
+                else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
                 {
                     graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
                     graphChunk.IsActive = true;
-                    graphChunk.BackImage.SetActive(true);
+                    // graphChunk.BackImage.SetActive(true);
                     currentHighlightValue = graphChunk.BinaryVal;
                     haveGuessedThisHighlight = false;
                 }
-                else if (go.transform.localPosition.x < -100f && graphChunk.IsActive)
-                {
-                    currentHighlightValue = -1;
-                    graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
-                    graphChunk.IsActive = false;
-                    graphChunk.BackImage.SetActive(false);
-                }
+                // else if (go.transform.localPosition.x < -362f && graphChunk.IsActive)
+                // {
+                //     currentHighlightValue = -1;
+                //     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
+                //     graphChunk.IsActive = false;
+                //     graphChunk.BackImage.SetActive(false);
+                // }
                 index++;
             }
             if (removeFirst)
@@ -249,8 +249,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         {
             if (currentHighlightValue == 1)
             {
-                currentScore++;
-                UpdateScore();
+                Correct();
             }
             else
             {
@@ -271,8 +270,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         {
             if (currentHighlightValue == 0)
             {
-                currentScore++;
-                UpdateScore();
+                Correct();
             }
             else
             {
@@ -280,6 +278,14 @@ public class GameSceneManagerDDR : MonoBehaviour
             }
         }
         haveGuessedThisHighlight = true;
+    }
+
+    void Correct()
+    {
+        currentScore++;
+        UpdateScore();
+        Destroy(graphChunks[0]);
+        graphChunks.RemoveAt(0);
     }
 
     void Strike()
