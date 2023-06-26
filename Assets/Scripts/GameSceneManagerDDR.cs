@@ -29,8 +29,6 @@ public class GameSceneManagerDDR : MonoBehaviour
     [SerializeField]
     GameObject HUDGame;
     [SerializeField]
-    TextMeshProUGUI HUDScore;
-    [SerializeField]
     GameObject HUDGameOver;
     [SerializeField]
     TextMeshProUGUI HUDGameOverText;
@@ -62,6 +60,7 @@ public class GameSceneManagerDDR : MonoBehaviour
     Sprite ASKOneZeroSprite;
 
     bool isPlaying = false;
+    int currentLevel = 0;
     int currentScore = 0;
     float speed = 200f;
     List<GameObject> graphChunks = new List<GameObject>();
@@ -252,8 +251,6 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDTutorial.GetComponent<MoveNormal>().MoveDown();
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
         HUDReplay.GetComponent<MoveNormal>().MoveDown();
-        currentScore = 0;
-        HUDScore.text = currentScore.ToString();
 
         int currentBinaryVal = Random.Range(0, 2);
         prevBinaryVal = currentBinaryVal;
@@ -355,8 +352,6 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     void Correct()
     {
-        currentScore++;
-        UpdateScore();
         Destroy(graphChunks[0]);
         graphChunks.RemoveAt(0);
     }
@@ -366,8 +361,4 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     }
 
-    void UpdateScore()
-    {
-        HUDScore.text = currentScore.ToString();
-    }
 }
