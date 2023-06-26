@@ -102,7 +102,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
 
         InitBinaryImages();
-        InitIntroPanel(0);
+        InitIntroPanel();
     }
 
     void InitBinaryImages()
@@ -113,30 +113,51 @@ public class GameSceneManagerDDR : MonoBehaviour
             binaryImages[x] = new BinaryImage();
         }
         binaryImages[0].Title = "smiley emoji";
+        binaryImages[0].isASK = true;
         binaryImages[0].Bits = new int[100] {0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0};
         binaryImages[1].Title = "heart";
+        binaryImages[1].isASK = false;
         binaryImages[1].Bits = new int[100] {0,0,1,1,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0};
         binaryImages[2].Title = "alien";
+        binaryImages[2].isASK = true;
         binaryImages[2].Bits = new int[100] {0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,1,1,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,0,1,0,0,1,0,1,1,0,1,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,0,0,0,1,1};
         binaryImages[3].Title = "cat";
+        binaryImages[3].isASK = false;
         binaryImages[3].Bits = new int[100] {0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,0,1,0,0,1,0,1,0,0,0,0,1,0};
         binaryImages[4].Title = "robot";
+        binaryImages[4].isASK = true;
         binaryImages[4].Bits = new int[100] {0,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0};
         binaryImages[5].Title = "space ship";
+        binaryImages[5].isASK = false;
         binaryImages[5].Bits = new int[100] {0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,1};
         binaryImages[6].Title = "ghost";
+        binaryImages[6].isASK = true;
         binaryImages[6].Bits = new int[100] {0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,0,0,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0};
 
     }
 
-    void InitIntroPanel(int index)
+    void InitIntroPanel()
     {
         BinaryImageSquares = new GameObject[MaxSquares];
 
         for (int x = 0; x < MaxSquares; x++)
         {
-            int squareVal = binaryImages[index].Bits[x];
             BinaryImageSquares[x] = Instantiate(BinaryImageSquarePrefab, HUDbinaryImagePanel.transform);
+        }
+    }
+
+    void UpdateIntroPanel(int index)
+    {
+        HUDLevelStartImage.sprite = binaryImages[index].isASK ? ASKintroSprite : FSKintroSprite;
+        string introText = "A " + binaryImages[index].Title + " image is being sent using radio waves and you must decode it!\n\n";
+        introText = introText + "First we convert the squares to binary numbers. White squares are represented as a 1. Black squares are represented as a 0.\n\n";
+        introText = introText + "Then we turn the binary numbers into a radio signal that uses " + (binaryImages[index].isASK ? "amplitude shift keying. " : "frequency shift keying. ");
+        introText = introText + (binaryImages[index].isASK ? "0's are represented with a low amplitude signal, 1's are represented with a high amplitude signal." : "0's are represented with a low frequency signal, 1's are represented with a high frequency signal.");
+        HUDLevelStartText.text = introText;
+
+        for (int x = 0; x < MaxSquares; x++)
+        {
+            int squareVal = binaryImages[index].Bits[x];
             if (squareVal == 1)
             {
                 BinaryImageSquares[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.On;
@@ -242,6 +263,8 @@ public class GameSceneManagerDDR : MonoBehaviour
     public void StartGameIntro()
     {
         audioManager.PlaySelectSound();
+        currentLevel = 0;
+        UpdateIntroPanel(currentLevel);
         HUDTitle.GetComponent<MoveNormal>().MoveUp();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveDown();
         HUDLevelStart.GetComponent<MoveNormal>().MoveUp();

@@ -732,8 +732,8 @@ MonoBehaviour:
   HUDLevelStart: {fileID: 867224197}
   HUDLevelStartImage: {fileID: 1450162642}
   HUDLevelStartText: {fileID: 1623813783}
-  ASKintroSprite: {fileID: 0}
-  FSKintroSprite: {fileID: 0}
+  ASKintroSprite: {fileID: 21300000, guid: 40f6be60e5fa7ec4d8833351ea6886e4, type: 3}
+  FSKintroSprite: {fileID: 21300000, guid: a303cb021d6f70c40a64ff4da0ea51f9, type: 3}
   HUDbinaryImagePanel: {fileID: 648893606}
   BinaryImageSquarePrefab: {fileID: 4621309264751950691, guid: fb274eb041006fd4db0cd2bd441abfd2, type: 3}
 --- !u!1 &190860944
@@ -4173,7 +4173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -134, y: -23.999996}
+  m_AnchoredPosition: {x: -134, y: -30}
   m_SizeDelta: {x: 900, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450162642
