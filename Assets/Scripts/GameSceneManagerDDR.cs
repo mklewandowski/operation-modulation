@@ -61,7 +61,7 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     bool isPlaying = false;
     int currentLevel = 0;
-    int currentScore = 0;
+    int currentChar = 0;
     float speed = 200f;
     List<GameObject> graphChunks = new List<GameObject>();
     int prevBinaryVal = 0;
@@ -197,9 +197,13 @@ public class GameSceneManagerDDR : MonoBehaviour
             }
             if (addNew)
             {
-                int currentBinaryVal = Random.Range(0, 2);
-                GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
-                prevBinaryVal = currentBinaryVal;
+                currentChar++;
+                if (currentChar < binaryImages[currentLevel].Bits.Length)
+                {
+                    int currentBinaryVal = currentBinaryVal = binaryImages[currentLevel].Bits[currentChar];
+                    GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
+                    prevBinaryVal = currentBinaryVal;
+                }
             }
 
             if (Input.GetKeyDown("0"))
@@ -252,7 +256,8 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
         HUDReplay.GetComponent<MoveNormal>().MoveDown();
 
-        int currentBinaryVal = Random.Range(0, 2);
+        currentChar = 0;
+        int currentBinaryVal = binaryImages[currentLevel].Bits[currentChar];
         prevBinaryVal = currentBinaryVal;
         GenerateGraphChunk(currentBinaryVal, prevBinaryVal, 700f);
 
