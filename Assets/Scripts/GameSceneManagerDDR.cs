@@ -78,6 +78,16 @@ public class GameSceneManagerDDR : MonoBehaviour
     };
 
     [SerializeField]
+    GameObject HUDLevelStart;
+    [SerializeField]
+    Image HUDLevelStartImage;
+    [SerializeField]
+    TextMeshProUGUI HUDLevelStartText;
+    [SerializeField]
+    Sprite ASKintroSprite;
+    [SerializeField]
+    Sprite FSKintroSprite;
+    [SerializeField]
     GameObject HUDbinaryImagePanel;
     int MaxSquares = 100;
     BinaryImage[] binaryImages;
@@ -93,7 +103,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
 
         InitBinaryImages();
-        InitIntroPanel();
+        InitIntroPanel(0);
     }
 
     void InitBinaryImages()
@@ -120,13 +130,13 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     }
 
-    void InitIntroPanel()
+    void InitIntroPanel(int index)
     {
         BinaryImageSquares = new GameObject[MaxSquares];
 
         for (int x = 0; x < MaxSquares; x++)
         {
-            int squareVal = binaryImages[2].Bits[x];
+            int squareVal = binaryImages[index].Bits[x];
             BinaryImageSquares[x] = Instantiate(BinaryImageSquarePrefab, HUDbinaryImagePanel.transform);
             if (squareVal == 1)
             {
@@ -226,11 +236,18 @@ public class GameSceneManagerDDR : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGameIntro()
     {
         audioManager.PlaySelectSound();
         HUDTitle.GetComponent<MoveNormal>().MoveUp();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveDown();
+        HUDLevelStart.GetComponent<MoveNormal>().MoveUp();
+    }
+
+    public void StartGame()
+    {
+        audioManager.PlaySelectSound();
+        HUDLevelStart.GetComponent<MoveNormal>().MoveDown();
 
         HUDTutorial.GetComponent<MoveNormal>().MoveDown();
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
