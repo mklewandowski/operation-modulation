@@ -77,7 +77,13 @@ public class GameSceneManagerDDR : MonoBehaviour
         "Now you try! Amplitude Shift Keying has been used to send binary numbers over a radio wave. Try to decode each binary number.\n\nReady?"
     };
 
-    BinaryImage[] binaryImages = new BinaryImage[8];
+    [SerializeField]
+    GameObject HUDbinaryImagePanel;
+    int MaxSquares = 100;
+    BinaryImage[] binaryImages;
+    [SerializeField]
+    GameObject BinaryImageSquarePrefab;
+    GameObject[] BinaryImageSquares;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +91,18 @@ public class GameSceneManagerDDR : MonoBehaviour
         audioManager = this.GetComponent<AudioManager>();
         HUDTitle.GetComponent<MoveNormal>().MoveDown();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
+
+        InitBinaryImages();
+        InitIntroPanel();
+    }
+
+    void InitBinaryImages()
+    {
+        binaryImages = new BinaryImage[8];
+        for (int x = 0; x < binaryImages.Length; x++)
+        {
+            binaryImages[x] = new BinaryImage();
+        }
         binaryImages[0].Title = "smiley emoji";
         binaryImages[0].Bits = new int[100] {0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0};
         binaryImages[1].Title = "heart";
@@ -99,6 +117,28 @@ public class GameSceneManagerDDR : MonoBehaviour
         binaryImages[5].Bits = new int[100] {0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,1};
         binaryImages[6].Title = "ghost";
         binaryImages[6].Bits = new int[100] {0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,0,0,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0};
+
+    }
+
+    void InitIntroPanel()
+    {
+        BinaryImageSquares = new GameObject[MaxSquares];
+
+        for (int x = 0; x < MaxSquares; x++)
+        {
+            int squareVal = binaryImages[2].Bits[x];
+            BinaryImageSquares[x] = Instantiate(BinaryImageSquarePrefab, HUDbinaryImagePanel.transform);
+            if (squareVal == 1)
+            {
+                BinaryImageSquares[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.On;
+                BinaryImageSquares[x].GetComponent<BinaryImageSquare>().SquareImage.color = Color.white;
+            }
+            else
+            {
+                BinaryImageSquares[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.Off;
+                BinaryImageSquares[x].GetComponent<BinaryImageSquare>().SquareImage.color = Color.black;
+            }
+        }
     }
 
     // Update is called once per frame
