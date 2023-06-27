@@ -74,6 +74,9 @@ public class GameSceneManagerDDR : MonoBehaviour
     float startSpeed = 350f;
     float levelCompleteTimer = 0f;
     float levelCompleteTimerMax = 3f;
+    float visibleHighlightPos = 520f;
+    float visibleHighlightPosMin = -650f;
+    bool waitToHighlight = false;
 
     List<GameObject> graphChunks = new List<GameObject>();
     int prevBinaryVal = 0;
@@ -224,17 +227,23 @@ public class GameSceneManagerDDR : MonoBehaviour
                 numCorrect++;
             if (squareVal == 1)
             {
+                BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().QuestionText.SetActive(false);
                 BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.On;
                 BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().SquareImage.color = Color.white;
             }
-            else
+            else if (squareVal == 0)
             {
+                BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().QuestionText.SetActive(false);
                 BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.Off;
                 BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().SquareImage.color = Color.black;
             }
+            else
+            {
+                BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().QuestionText.SetActive(true);
+                BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.Unknown;
+                BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().SquareImage.color = Color.black;
+            }
         }
-
-
         HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
     }
 
@@ -308,6 +317,21 @@ public class GameSceneManagerDDR : MonoBehaviour
                 go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
             }
 
+            if (waitToHighlight)
+            {
+                if (graphChunks[currentHighlightChar].transform.localPosition.x <= visibleHighlightPos)
+                {
+                    UpdateCurrentHighlight();
+                }
+            }
+
+            if (!levelComplete && graphChunks[currentHighlightChar].transform.localPosition.x <= visibleHighlightPosMin)
+            {
+                userChars.Add(-1);
+                HUDUserText.text = HUDUserText.text + "?";
+                IncrementGraphHighlight();
+            }
+
             if (Input.GetKeyDown("0"))
                 GuessZero();
             else if (Input.GetKeyDown("1"))
@@ -331,7 +355,19 @@ public class GameSceneManagerDDR : MonoBehaviour
             graphChunks[currentHighlightChar - 1].GetComponent<GraphChunk>().BackImage.SetActive(false);
         }
         if (currentHighlightChar < MaxSquares)
-            graphChunks[currentHighlightChar].GetComponent<GraphChunk>().BackImage.SetActive(true);
+        {
+            if (graphChunks[currentHighlightChar].transform.localPosition.x > visibleHighlightPos)
+            {
+                waitToHighlight = true;
+            }
+            else
+            {
+                graphChunks[currentHighlightChar].GetComponent<GraphChunk>().BackImage.transform.localScale = new Vector3(.1f, .1f, .1f);
+                graphChunks[currentHighlightChar].GetComponent<GraphChunk>().BackImage.SetActive(true);
+                graphChunks[currentHighlightChar].GetComponent<GraphChunk>().BackImage.GetComponent<GrowAndShrink>().StartEffect();
+                waitToHighlight = false;
+            }
+        }
 
         //     else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
         //     {
@@ -497,6 +533,10 @@ public class GameSceneManagerDDR : MonoBehaviour
         //     }
         // }
         // haveGuessedThisHighlight = true;
+        if (waitToHighlight)
+        {
+            return;
+        }
         audioManager.PlaySelectSound();
         userChars.Add(1);
         HUDUserText.text = HUDUserText.text + "1";
@@ -523,11 +563,14 @@ public class GameSceneManagerDDR : MonoBehaviour
         //         Strike();
         //     }
         // }
+        if (waitToHighlight)
+        {
+            return;
+        }
         audioManager.PlaySelectSound();
         userChars.Add(0);
         HUDUserText.text = HUDUserText.text + "0";
         IncrementGraphHighlight();
-
     }
 
     // void Correct()
