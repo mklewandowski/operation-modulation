@@ -61,13 +61,15 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     bool isPlaying = false;
     int currentLevel = 0;
-    int currentChar = 0;
-    float speed = 200f;
+    int currentHighlightChar = 0;
+    List<int> userChars = new List<int>();
+    float speed = 250f;
+
     List<GameObject> graphChunks = new List<GameObject>();
     int prevBinaryVal = 0;
 
-    int currentHighlightValue = -1;
-    bool haveGuessedThisHighlight = false;
+    // int currentHighlightValue = -1;
+    // bool haveGuessedThisHighlight = false;
 
     int tutorialNum = 0;
     string[] tutorialStrings = {
@@ -93,6 +95,8 @@ public class GameSceneManagerDDR : MonoBehaviour
     [SerializeField]
     GameObject BinaryImageSquarePrefab;
     GameObject[] BinaryImageSquares;
+    [SerializeField]
+    TextMeshProUGUI HUDUserText;
 
     // Start is called before the first frame update
     void Start()
@@ -133,7 +137,6 @@ public class GameSceneManagerDDR : MonoBehaviour
         binaryImages[6].Title = "ghost";
         binaryImages[6].isASK = true;
         binaryImages[6].Bits = new int[100] {0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,0,0,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0};
-
     }
 
     void InitIntroPanel()
@@ -171,60 +174,74 @@ public class GameSceneManagerDDR : MonoBehaviour
         }
     }
 
+    void CreateScrollingGraph()
+    {
+        int currentBinaryVal = binaryImages[currentLevel].Bits[0];
+        prevBinaryVal = currentBinaryVal;
+        for (int x = 0; x < MaxSquares; x++)
+        {
+            currentBinaryVal = binaryImages[currentLevel].Bits[x];
+            GenerateGraphChunk(currentBinaryVal, prevBinaryVal, 700f + 300f * x);
+            prevBinaryVal = currentBinaryVal;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (isPlaying)
         {
-            int index = 0;
-            bool removeFirst = false;
-            bool addNew = false;
-            float xPos = 0;
+            // bool removeFirst = false;
+            // bool addNew = false;
+            // float xPos = 0;
+            // foreach (GameObject go in graphChunks)
+            // {
+            //     GraphChunk graphChunk = go.GetComponent<GraphChunk>();
+            //     go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
+            //     if (go.transform.localPosition.x < -362f)
+            //     {
+            //         removeFirst = true;
+            //     }
+            //     else if (go.transform.localPosition.x < 500f && !graphChunk.HasTriggeredNext)
+            //     {
+            //         go.GetComponent<GraphChunk>().HasTriggeredNext = true;
+            //         xPos = go.transform.localPosition.x + 300f;
+            //         addNew = true;
+            //     }
+            //     else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
+            //     {
+            //         graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
+            //         graphChunk.IsActive = true;
+            //         currentHighlightValue = graphChunk.BinaryVal;
+            //         haveGuessedThisHighlight = false;
+            //     }
+            //     // else if (go.transform.localPosition.x < -362f && graphChunk.IsActive)
+            //     // {
+            //     //     currentHighlightValue = -1;
+            //     //     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
+            //     //     graphChunk.IsActive = false;
+            //     //     graphChunk.BackImage.SetActive(false);
+            //     // }
+            // }
+            // if (removeFirst)
+            // {
+            //     Destroy(graphChunks[0]);
+            //     graphChunks.RemoveAt(0);
+            // }
+            // if (addNew)
+            // {
+            //     currentChar++;
+            //     if (currentChar < binaryImages[currentLevel].Bits.Length)
+            //     {
+            //         int currentBinaryVal = currentBinaryVal = binaryImages[currentLevel].Bits[currentChar];
+            //         GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
+            //         prevBinaryVal = currentBinaryVal;
+            //     }
+            // }
+
             foreach (GameObject go in graphChunks)
             {
-                GraphChunk graphChunk = go.GetComponent<GraphChunk>();
                 go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
-                if (go.transform.localPosition.x < -362f)
-                {
-                    removeFirst = true;
-                }
-                else if (go.transform.localPosition.x < 500f && !graphChunk.HasTriggeredNext)
-                {
-                    go.GetComponent<GraphChunk>().HasTriggeredNext = true;
-                    xPos = go.transform.localPosition.x + 300f;
-                    addNew = true;
-                }
-                else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
-                {
-                    graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
-                    graphChunk.IsActive = true;
-                    // graphChunk.BackImage.SetActive(true);
-                    currentHighlightValue = graphChunk.BinaryVal;
-                    haveGuessedThisHighlight = false;
-                }
-                // else if (go.transform.localPosition.x < -362f && graphChunk.IsActive)
-                // {
-                //     currentHighlightValue = -1;
-                //     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
-                //     graphChunk.IsActive = false;
-                //     graphChunk.BackImage.SetActive(false);
-                // }
-                index++;
-            }
-            if (removeFirst)
-            {
-                Destroy(graphChunks[0]);
-                graphChunks.RemoveAt(0);
-            }
-            if (addNew)
-            {
-                currentChar++;
-                if (currentChar < binaryImages[currentLevel].Bits.Length)
-                {
-                    int currentBinaryVal = currentBinaryVal = binaryImages[currentLevel].Bits[currentChar];
-                    GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
-                    prevBinaryVal = currentBinaryVal;
-                }
             }
 
             if (Input.GetKeyDown("0"))
@@ -232,6 +249,29 @@ public class GameSceneManagerDDR : MonoBehaviour
             else if (Input.GetKeyDown("1"))
                 GuessOne();
         }
+    }
+
+    void UpdateCurrentHighlight()
+    {
+        if (currentHighlightChar > 0)
+        {
+            graphChunks[currentHighlightChar - 1].GetComponent<GraphChunk>().BackImage.SetActive(false);
+        }
+        graphChunks[currentHighlightChar].GetComponent<GraphChunk>().BackImage.SetActive(true);
+                    //     else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
+            //     {
+            //         graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
+            //         graphChunk.IsActive = true;
+            //         currentHighlightValue = graphChunk.BinaryVal;
+            //         haveGuessedThisHighlight = false;
+            //     }
+            //     // else if (go.transform.localPosition.x < -362f && graphChunk.IsActive)
+            //     // {
+            //     //     currentHighlightValue = -1;
+            //     //     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
+            //     //     graphChunk.IsActive = false;
+            //     //     graphChunk.BackImage.SetActive(false);
+            //     // }
     }
 
     public void StartTutorial()
@@ -279,10 +319,9 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
         HUDReplay.GetComponent<MoveNormal>().MoveDown();
 
-        currentChar = 0;
-        int currentBinaryVal = binaryImages[currentLevel].Bits[currentChar];
-        prevBinaryVal = currentBinaryVal;
-        GenerateGraphChunk(currentBinaryVal, prevBinaryVal, 700f);
+        currentHighlightChar = 0;
+        CreateScrollingGraph();
+        UpdateCurrentHighlight();
 
         HUDGame.GetComponent<MoveNormal>().MoveDown();
         isPlaying = true;
@@ -338,55 +377,63 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     public void GuessOne()
     {
-        if (haveGuessedThisHighlight)
-        {
-            Strike();
-            return;
-        }
-        else
-        {
-            if (currentHighlightValue == 1)
-            {
-                Correct();
-            }
-            else
-            {
-                Strike();
-            }
-        }
-        haveGuessedThisHighlight = true;
+        // if (haveGuessedThisHighlight)
+        // {
+        //     Strike();
+        //     return;
+        // }
+        // else
+        // {
+        //     if (currentHighlightValue == 1)
+        //     {
+        //         Correct();
+        //     }
+        //     else
+        //     {
+        //         Strike();
+        //     }
+        // }
+        // haveGuessedThisHighlight = true;
+
+        userChars.Add(1);
+        currentHighlightChar++;
+        HUDUserText.text = HUDUserText.text + "1";
+        UpdateCurrentHighlight();
     }
 
     public void GuessZero()
     {
-        if (haveGuessedThisHighlight)
-        {
-            Strike();
-            return;
-        }
-        else
-        {
-            if (currentHighlightValue == 0)
-            {
-                Correct();
-            }
-            else
-            {
-                Strike();
-            }
-        }
-        haveGuessedThisHighlight = true;
+        // if (haveGuessedThisHighlight)
+        // {
+        //     Strike();
+        //     return;
+        // }
+        // else
+        // {
+        //     if (currentHighlightValue == 0)
+        //     {
+        //         Correct();
+        //     }
+        //     else
+        //     {
+        //         Strike();
+        //     }
+        // }
+        userChars.Add(0);
+        currentHighlightChar++;
+        HUDUserText.text = HUDUserText.text + "0";
+        UpdateCurrentHighlight();
     }
 
-    void Correct()
-    {
-        Destroy(graphChunks[0]);
-        graphChunks.RemoveAt(0);
-    }
+    // void Correct()
+    // {
+    //     Destroy(graphChunks[0]);
+    //     graphChunks.RemoveAt(0);
+    // }
 
-    void Strike()
-    {
+    // void Strike()
+    // {
 
-    }
+    // }
 
 }
