@@ -71,13 +71,6 @@ public class GameSceneManagerDDR : MonoBehaviour
     // int currentHighlightValue = -1;
     // bool haveGuessedThisHighlight = false;
 
-    int tutorialNum = 0;
-    string[] tutorialStrings = {
-        "Modulation is used to transmit binary numbers (0s and 1s) over radio waves.",
-        "The shape of the graph determines if a 0 or a 1 is being sent.",
-        "Now you try! Amplitude Shift Keying has been used to send binary numbers over a radio wave. Try to decode each binary number.\n\nReady?"
-    };
-
     [SerializeField]
     GameObject HUDLevelStart;
     [SerializeField]
@@ -274,32 +267,6 @@ public class GameSceneManagerDDR : MonoBehaviour
             //     // }
     }
 
-    public void StartTutorial()
-    {
-        HUDTitle.GetComponent<MoveNormal>().MoveUp();
-        HUDIntroAndStart.GetComponent<MoveNormal>().MoveDown();
-        HUDTutorial.GetComponent<MoveNormal>().MoveUp();
-        audioManager.PlaySelectSound();
-    }
-
-    public void AdvanceTutorial()
-    {
-        tutorialNum++;
-        if (tutorialNum >= tutorialStrings.Length)
-        {
-            // start game
-            StartGame();
-        }
-        else
-        {
-            audioManager.PlayMenuSound();
-            // next tutorial
-            HUDTutorialText.text = tutorialStrings[tutorialNum];
-            if (tutorialNum == tutorialStrings.Length - 1)
-                HUDTutorialButtonText.text = "BEGIN";
-        }
-    }
-
     public void StartGameIntro()
     {
         audioManager.PlaySelectSound();
@@ -342,7 +309,6 @@ public class GameSceneManagerDDR : MonoBehaviour
             go.GetComponent<GraphChunk>().GraphImage2.sprite = currVal == 0 ? ASKZeroEndSprite : ASKOneEndSprite;
             go.GetComponent<GraphChunk>().BinaryVal = currVal;
             string debugstring = currVal == 0 ? "ASK O" : "ASK 1";
-            Debug.Log(debugstring);
             graphChunks.Add(go);
         }
         else
@@ -353,7 +319,6 @@ public class GameSceneManagerDDR : MonoBehaviour
             go.GetComponent<GraphChunk>().GraphImage1.sprite = currVal == 0 ? FSKZeroSprite : FSKOneSprite;
             go.GetComponent<GraphChunk>().BinaryVal = currVal;
             string debugstring = currVal == 0 ? "FSK O" : "FSK 1";
-            Debug.Log(debugstring);
             graphChunks.Add(go);
         }
     }
@@ -373,6 +338,22 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDTitle.GetComponent<MoveNormal>().MoveDown();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
         HUDGame.GetComponent<MoveNormal>().MoveUp();
+    }
+
+    public void SelectAbout()
+    {
+        HUDTitle.GetComponent<MoveNormal>().MoveUp();
+        HUDIntroAndStart.GetComponent<MoveNormal>().MoveDown();
+        HUDTutorial.GetComponent<MoveNormal>().MoveUp();
+        audioManager.PlaySelectSound();
+    }
+
+    public void SelectBack()
+    {
+        HUDTitle.GetComponent<MoveNormal>().MoveDown();
+        HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
+        HUDTutorial.GetComponent<MoveNormal>().MoveDown();
+        audioManager.PlaySelectSound();
     }
 
     public void GuessOne()
