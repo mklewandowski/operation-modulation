@@ -97,7 +97,7 @@ public class GameSceneManagerDDR : MonoBehaviour
     GameObject HUDbinaryImagePanelLevelComplete;
     [SerializeField]
     GameObject HUDbinaryImagePanelLevelCompleteUser;
-    int MaxSquares = 100;
+    int MaxSquares = 64;
     BinaryImage[] binaryImages;
     [SerializeField]
     GameObject BinaryImageSquarePrefab;
@@ -120,32 +120,29 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     void InitBinaryImages()
     {
-        binaryImages = new BinaryImage[8];
+        binaryImages = new BinaryImage[6];
         for (int x = 0; x < binaryImages.Length; x++)
         {
             binaryImages[x] = new BinaryImage();
         }
         binaryImages[0].Title = "smiley emoji";
         binaryImages[0].isASK = true;
-        binaryImages[0].Bits = new int[100] {0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0};
+        binaryImages[0].Bits = new int[64] {0,0,1,1,1,1,0,0,0,1,0,1,1,0,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0,0,0,0,1,1,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0};
         binaryImages[1].Title = "heart";
         binaryImages[1].isASK = false;
-        binaryImages[1].Bits = new int[100] {0,0,1,1,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0};
-        binaryImages[2].Title = "alien";
+        binaryImages[1].Bits = new int[64] {0,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0,0};
+        binaryImages[2].Title = "cat";
         binaryImages[2].isASK = true;
-        binaryImages[2].Bits = new int[100] {0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,1,1,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,0,1,0,0,1,0,1,1,0,1,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,0,0,0,1,1};
-        binaryImages[3].Title = "cat";
+        binaryImages[2].Bits = new int[64] {1,0,0,1,0,0,0,1,1,1,1,1,0,0,1,0,1,1,1,1,0,0,1,0,0,1,1,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0,1,0};
+        binaryImages[3].Title = "robot";
         binaryImages[3].isASK = false;
-        binaryImages[3].Bits = new int[100] {0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,0,1,0,0,1,0,1,0,0,0,0,1,0};
-        binaryImages[4].Title = "robot";
-        binaryImages[4].isASK = true;
-        binaryImages[4].Bits = new int[100] {0,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0};
-        binaryImages[5].Title = "space ship";
+        binaryImages[3].Bits = new int[64] {0,1,0,0,0,0,1,0,0,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,0,1,0,0,1,0,0,0,0,1,1,1,1,0,0};
+        binaryImages[4].Title = "true ship";
+        binaryImages[4].isASK = false;
+        binaryImages[4].Bits = new int[64] {0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,1};
+        binaryImages[5].Title = "ghost";
         binaryImages[5].isASK = false;
-        binaryImages[5].Bits = new int[100] {0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,1};
-        binaryImages[6].Title = "ghost";
-        binaryImages[6].isASK = true;
-        binaryImages[6].Bits = new int[100] {0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,0,0,1,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0};
+        binaryImages[5].Bits = new int[64] {0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,0,0,1,0,0,1,0,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0};
     }
 
     void InitIntroAndLevelCompletePanels()
@@ -320,7 +317,6 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     void UpdateCurrentHighlight()
     {
-        Debug.Log(currentHighlightChar);
         if (currentHighlightChar > 0)
         {
             graphChunks[currentHighlightChar - 1].GetComponent<GraphChunk>().BackImage.SetActive(false);
