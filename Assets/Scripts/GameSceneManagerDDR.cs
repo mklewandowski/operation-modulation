@@ -37,6 +37,8 @@ public class GameSceneManagerDDR : MonoBehaviour
     [SerializeField]
     GameObject HUDLevelComplete;
     [SerializeField]
+    TextMeshProUGUI HUDLevelCompletePercent;
+    [SerializeField]
     GameObject HUDReplay;
 
     [SerializeField]
@@ -213,9 +215,13 @@ public class GameSceneManagerDDR : MonoBehaviour
             }
         }
 
+        int numCorrect = 0;
         for (int x = 0; x < MaxSquares; x++)
         {
             int squareVal = userChars[x];
+            int correctSquareVal = binaryImages[currentLevel].Bits[x];
+            if (squareVal == correctSquareVal)
+                numCorrect++;
             if (squareVal == 1)
             {
                 BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().On = Globals.BinaryImageSquareStates.On;
@@ -227,6 +233,9 @@ public class GameSceneManagerDDR : MonoBehaviour
                 BinaryImageSquaresLevelCompleteUser[x].GetComponent<BinaryImageSquare>().SquareImage.color = Color.black;
             }
         }
+
+
+        HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
     }
 
     void CreateScrollingGraph()
