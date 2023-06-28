@@ -10,4 +10,6 @@ public class Globals
         Off,
         Unknown,
     }
+
+    public static bool AudioOn = true;
 }

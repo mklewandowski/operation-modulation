@@ -117,6 +117,13 @@ public class GameSceneManagerDDR : MonoBehaviour
     float endParticleTimer = 0;
     float endParticleTimerMax = 1.5f;
 
+    [SerializeField]
+    Image AudioImage;
+    [SerializeField]
+    Sprite AudioOnSprite;
+    [SerializeField]
+    Sprite AudioOffSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -612,6 +619,21 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
         HUDGame.GetComponent<MoveNormal>().MoveUp();
         HUDLevelCompleteMessage.GetComponent<MoveNormal>().MoveUp();
+    }
+
+    public void ToggleAudio()
+    {
+        Globals.AudioOn = !Globals.AudioOn;
+        if (Globals.AudioOn)
+        {
+            audioManager.StartMusic();
+            AudioImage.sprite = AudioOnSprite;
+        }
+        else
+        {
+            audioManager.StopMusic();
+            AudioImage.sprite = AudioOffSprite;
+        }
     }
 
 }
