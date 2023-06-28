@@ -93,6 +93,8 @@ public class GameSceneManagerDDR : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI HUDLevelStartText;
     [SerializeField]
+    TextMeshProUGUI HUDLevelButtonText;
+    [SerializeField]
     Sprite ASKintroSprite;
     [SerializeField]
     Sprite FSKintroSprite;
@@ -257,6 +259,7 @@ public class GameSceneManagerDDR : MonoBehaviour
             }
         }
         HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
+        HUDLevelButtonText.text = (currentLevel < 4 ? "NEXT LEVEL" : "HOME");
     }
 
     void CreateScrollingGraph()
@@ -426,7 +429,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
         HUDReplay.GetComponent<MoveNormal>().MoveDown();
 
-        speed = startSpeed + (currentLevel * 10f);
+        speed = startSpeed + (currentLevel * 15f);
         currentHighlightChar = 0;
         HUDUserText.text = "";
         userChars.Clear();
@@ -451,11 +454,20 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     public void ShowNextLevel()
     {
-        audioManager.PlaySelectSound();
-        HUDLevelComplete.GetComponent<MoveNormal>().MoveUp();
-        currentLevel++;
-        UpdateIntroPanel();
-        HUDLevelStart.GetComponent<MoveNormal>().MoveUp();
+        if (currentLevel >= 5)
+        {
+            HUDLevelComplete.GetComponent<MoveNormal>().MoveUp();
+            SelectHome();
+        }
+        else
+        {
+            audioManager.PlaySelectSound();
+            HUDLevelComplete.GetComponent<MoveNormal>().MoveUp();
+            currentLevel++;
+            UpdateIntroPanel();
+            HUDLevelStart.GetComponent<MoveNormal>().MoveUp();
+        }
+
     }
 
     void ClearGraphChunks()
