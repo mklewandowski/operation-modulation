@@ -504,15 +504,6 @@ public class GameSceneManagerDDR : MonoBehaviour
         audioManager.PlaySuccessSound();
     }
 
-    public void SelectHome()
-    {
-        audioManager.PlaySelectSound();
-        HUDGameOver.GetComponent<MoveNormal>().MoveUp();
-        HUDTitle.GetComponent<MoveNormal>().MoveDown();
-        HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
-        HUDGame.GetComponent<MoveNormal>().MoveUp();
-    }
-
     public void SelectAbout()
     {
         HUDTitle.GetComponent<MoveNormal>().MoveUp();
@@ -611,6 +602,16 @@ public class GameSceneManagerDDR : MonoBehaviour
         UpdateCurrentHighlight();
         if (currentHighlightChar >= MaxSquares)
             LevelComplete();
+    }
+
+    public void SelectHome()
+    {
+        isPlaying = false;
+        audioManager.PlaySelectSound();
+        HUDTitle.GetComponent<MoveNormal>().MoveDown();
+        HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
+        HUDGame.GetComponent<MoveNormal>().MoveUp();
+        HUDLevelCompleteMessage.GetComponent<MoveNormal>().MoveUp();
     }
 
 }
