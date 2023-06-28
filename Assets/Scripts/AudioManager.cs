@@ -20,6 +20,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     AudioClip WrongSound;
 
+    [SerializeField]
+    AudioClip InvalidSound;
+
+    [SerializeField]
+    AudioClip MissSound;
+
+    [SerializeField]
+    AudioClip SuccessSound;
+
     void Awake()
     {
         audioSource = this.GetComponent<AudioSource>();
@@ -43,6 +52,19 @@ public class AudioManager : MonoBehaviour
     public void PlayWrongSound()
     {
         audioSource.PlayOneShot(WrongSound, 1f);
+    }
+
+    public void PlayInvalidSound()
+    {
+        audioSource.PlayOneShot(InvalidSound, 1f);
+    }
+    public void PlayMissSound()
+    {
+        audioSource.PlayOneShot(MissSound, 1f);
+    }
+    public void PlaySuccessSound()
+    {
+        audioSource.PlayOneShot(SuccessSound, 1f);
     }
 
 }

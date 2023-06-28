@@ -73,7 +73,7 @@ public class GameSceneManagerDDR : MonoBehaviour
     float speed = 350f;
     float startSpeed = 350f;
     float levelCompleteTimer = 0f;
-    float levelCompleteTimerMax = 3f;
+    float levelCompleteTimerMax = 4f;
     float visibleHighlightPos = 520f;
     float visibleHighlightPosMin = -650f;
     bool waitToHighlight = false;
@@ -111,6 +111,11 @@ public class GameSceneManagerDDR : MonoBehaviour
     GameObject[] BinaryImageSquaresLevelCompleteUser;
     [SerializeField]
     TextMeshProUGUI HUDUserText;
+
+    [SerializeField]
+    ParticleSystem EndParticle;
+    float endParticleTimer = 0;
+    float endParticleTimerMax = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -329,6 +334,7 @@ public class GameSceneManagerDDR : MonoBehaviour
             {
                 userChars.Add(-1);
                 HUDUserText.text = HUDUserText.text + "?";
+                audioManager.PlayMissSound();
                 IncrementGraphHighlight();
             }
 
@@ -344,6 +350,14 @@ public class GameSceneManagerDDR : MonoBehaviour
                 {
                     ShowLevelComplete();
                 }
+            }
+        }
+        if (endParticleTimer > 0)
+        {
+            endParticleTimer -= Time.deltaTime;
+            if (endParticleTimer <= 0)
+            {
+                EndParticle.Stop();
             }
         }
     }
@@ -485,6 +499,9 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDLevelCompleteMessage.GetComponent<MoveNormal>().MoveDown();
         levelCompleteTimer = levelCompleteTimerMax;
         UpdateLevelCompletePanels();
+        EndParticle.Play();
+        endParticleTimer = endParticleTimerMax;
+        audioManager.PlaySuccessSound();
     }
 
     public void SelectHome()
@@ -535,6 +552,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         // haveGuessedThisHighlight = true;
         if (waitToHighlight)
         {
+            audioManager.PlayInvalidSound();
             return;
         }
         audioManager.PlaySelectSound();
@@ -565,6 +583,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         // }
         if (waitToHighlight)
         {
+            audioManager.PlayInvalidSound();
             return;
         }
         audioManager.PlaySelectSound();
