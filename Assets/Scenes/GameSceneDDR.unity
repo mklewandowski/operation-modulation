@@ -816,6 +816,7 @@ MonoBehaviour:
   HUDLevelStartImage: {fileID: 1450162642}
   HUDLevelStartTitleText: {fileID: 359911592}
   HUDLevelStartText: {fileID: 1623813783}
+  HUDLevelButtonText: {fileID: 400432082}
   ASKintroSprite: {fileID: 21300000, guid: 40f6be60e5fa7ec4d8833351ea6886e4, type: 3}
   FSKintroSprite: {fileID: 21300000, guid: a303cb021d6f70c40a64ff4da0ea51f9, type: 3}
   HUDbinaryImagePanel: {fileID: 648893606}
@@ -4138,7 +4139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7469,7 +7470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
