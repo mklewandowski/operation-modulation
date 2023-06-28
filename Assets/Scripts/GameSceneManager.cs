@@ -145,7 +145,6 @@ public class GameSceneManager : MonoBehaviour
                 GraphPoints[x * 2 + 2].transform.localPosition = new Vector3(GraphPoints[x * 2 + 2].transform.localPosition.x, -2f, 0);
             }
         }
-        Debug.Log(binaryNum);
     }
 
     public void SetDigit(int digitNum)
