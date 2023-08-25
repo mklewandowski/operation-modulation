@@ -657,8 +657,7 @@ public class GameSceneManagerDDR : MonoBehaviour
 
     public void ToggleLanguage()
     {
-        Debug.Log("ToggleLanguage");
-        audioSource.PlayOneShot(ButtonSound, 1f);
+        audioManager.PlaySelectSound();
         if (Globals.CurrentLanguage == Globals.Language.English)
             SelectLanguage(Globals.Language.Spanish);
         else
