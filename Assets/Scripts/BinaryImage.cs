@@ -6,6 +6,7 @@ public class BinaryImage
 {
     public int[] Bits;
     public string Title;
+    public string TitleSP;
     public string Description;
     public bool isASK;
 }
