@@ -302,12 +302,12 @@ public class GameSceneManagerDDR : MonoBehaviour
         if (Globals.CurrentLanguage == Globals.Language.English)
         {
             HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
-            HUDLevelButtonText.text = (currentLevel < 4 ? "NEXT LEVEL" : "HOME");
+            HUDLevelButtonText.text = (currentLevel < 5 ? "NEXT LEVEL" : "HOME");
         }
         else
         {
             HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
-            HUDLevelButtonText.text = (currentLevel < 4 ? "NEXT LEVEL" : "HOME"); 
+            HUDLevelButtonText.text = (currentLevel < 5 ? "NEXT LEVEL" : "HOME"); 
         }
     }
 
