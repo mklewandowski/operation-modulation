@@ -963,6 +963,7 @@ MonoBehaviour:
   AudioImage: {fileID: 1667655488}
   AudioOnSprite: {fileID: 21300000, guid: 27ad2303913e0d84386d89b4d7e3df76, type: 3}
   AudioOffSprite: {fileID: 21300000, guid: 57a1b2189b4577249a83d405fbe688cb, type: 3}
+  LanguageText: {fileID: 72579967}
 --- !u!1 &159526626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,6 +3519,7 @@ GameObject:
   - component: {fileID: 861489187}
   - component: {fileID: 861489189}
   - component: {fileID: 861489188}
+  - component: {fileID: 861489190}
   m_Layer: 5
   m_Name: IntroText
   m_TagString: Untagged
@@ -3565,8 +3567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Decode images transmitted using radio signals and see how YOU perform as
-    a computer!
+  m_text: Decode images sent over radio waves to see how YOU perform as a computer!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 132413589c6147849ab581ed843c8b56, type: 2}
   m_sharedMaterial: {fileID: 3341469875057839004, guid: 132413589c6147849ab581ed843c8b56, type: 2}
@@ -3643,6 +3644,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861489186}
   m_CullTransparentMesh: 1
+--- !u!114 &861489190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861489186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - Decode images sent over radio waves to see how YOU perform as a computer!
+  - Decode images sent over radio waves to see how YOU perform as a computer!
+  AdjustFont: 0
+  FontSize: 0
+  LineSpacing: 0
 --- !u!1 &865660700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4860,6 +4879,7 @@ GameObject:
   - component: {fileID: 1124217816}
   - component: {fileID: 1124217818}
   - component: {fileID: 1124217817}
+  - component: {fileID: 1124217819}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4907,7 +4927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: START
+  m_text: PLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 132413589c6147849ab581ed843c8b56, type: 2}
   m_sharedMaterial: {fileID: 3341469875057839004, guid: 132413589c6147849ab581ed843c8b56, type: 2}
@@ -4984,6 +5004,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124217815}
   m_CullTransparentMesh: 1
+--- !u!114 &1124217819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124217815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - PLAY
+  - PLAY
+  AdjustFont: 0
+  FontSize: 0
+  LineSpacing: 0
 --- !u!1 &1162953752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5312,8 +5350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -300}
-  m_SizeDelta: {x: 250, y: 90}
+  m_AnchoredPosition: {x: 200, y: -300}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204666314
 MonoBehaviour:
@@ -5855,8 +5893,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -300}
-  m_SizeDelta: {x: 250, y: 90}
+  m_AnchoredPosition: {x: -200, y: -300}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316088917
 MonoBehaviour:
@@ -6174,6 +6212,7 @@ GameObject:
   - component: {fileID: 1392111629}
   - component: {fileID: 1392111631}
   - component: {fileID: 1392111630}
+  - component: {fileID: 1392111632}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -6221,7 +6260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ABOUT
+  m_text: GAME GUIDE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 132413589c6147849ab581ed843c8b56, type: 2}
   m_sharedMaterial: {fileID: 3341469875057839004, guid: 132413589c6147849ab581ed843c8b56, type: 2}
@@ -6298,6 +6337,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392111628}
   m_CullTransparentMesh: 1
+--- !u!114 &1392111632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392111628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - GAME GUIDE
+  - GAME GUIDE
+  AdjustFont: 0
+  FontSize: 0
+  LineSpacing: 0
 --- !u!1 &1427125741
 GameObject:
   m_ObjectHideFlags: 0
@@ -6836,7 +6893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 350}
+  m_AnchoredPosition: {x: 410, y: 310}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545549545
@@ -6883,8 +6940,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AreciboManager, Assembly-CSharp
+      - m_Target: {fileID: 94470849}
+        m_TargetAssemblyTypeName: GameSceneManagerDDR, Assembly-CSharp
         m_MethodName: ToggleLanguage
         m_Mode: 1
         m_Arguments:
@@ -7808,7 +7865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: -300}
+  m_AnchoredPosition: {x: -425, y: 300}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1695018737
