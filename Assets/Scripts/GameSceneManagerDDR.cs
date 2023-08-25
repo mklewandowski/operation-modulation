@@ -22,6 +22,8 @@ public class GameSceneManagerDDR : MonoBehaviour
     [SerializeField]
     GameObject HUDTutorial;
     [SerializeField]
+    GameObject HUDTutorial2;
+    [SerializeField]
     TextMeshProUGUI HUDTutorialText;
     [SerializeField]
     TextMeshProUGUI HUDTutorialButtonText;
@@ -285,54 +287,6 @@ public class GameSceneManagerDDR : MonoBehaviour
     {
         if (isPlaying)
         {
-            // bool removeFirst = false;
-            // bool addNew = false;
-            // float xPos = 0;
-            // foreach (GameObject go in graphChunks)
-            // {
-            //     GraphChunk graphChunk = go.GetComponent<GraphChunk>();
-            //     go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
-            //     if (go.transform.localPosition.x < -362f)
-            //     {
-            //         removeFirst = true;
-            //     }
-            //     else if (go.transform.localPosition.x < 500f && !graphChunk.HasTriggeredNext)
-            //     {
-            //         go.GetComponent<GraphChunk>().HasTriggeredNext = true;
-            //         xPos = go.transform.localPosition.x + 300f;
-            //         addNew = true;
-            //     }
-            //     else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
-            //     {
-            //         graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
-            //         graphChunk.IsActive = true;
-            //         currentHighlightValue = graphChunk.BinaryVal;
-            //         haveGuessedThisHighlight = false;
-            //     }
-            //     // else if (go.transform.localPosition.x < -362f && graphChunk.IsActive)
-            //     // {
-            //     //     currentHighlightValue = -1;
-            //     //     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
-            //     //     graphChunk.IsActive = false;
-            //     //     graphChunk.BackImage.SetActive(false);
-            //     // }
-            // }
-            // if (removeFirst)
-            // {
-            //     Destroy(graphChunks[0]);
-            //     graphChunks.RemoveAt(0);
-            // }
-            // if (addNew)
-            // {
-            //     currentChar++;
-            //     if (currentChar < binaryImages[currentLevel].Bits.Length)
-            //     {
-            //         int currentBinaryVal = currentBinaryVal = binaryImages[currentLevel].Bits[currentChar];
-            //         GenerateGraphChunk(currentBinaryVal, prevBinaryVal, xPos);
-            //         prevBinaryVal = currentBinaryVal;
-            //     }
-            // }
-
             foreach (GameObject go in graphChunks)
             {
                 go.transform.localPosition = new Vector3(go.transform.localPosition.x - speed * Time.deltaTime, go.transform.localPosition.y, go.transform.localPosition.z);
@@ -398,21 +352,6 @@ public class GameSceneManagerDDR : MonoBehaviour
                 waitToHighlight = false;
             }
         }
-
-        //     else if (go.transform.localPosition.x <= -62f && !graphChunk.IsActive) // set chunk active
-        //     {
-        //         graphChunk.SetColor(new Color (55f/255f, 173f/255f, 168f/255f));
-        //         graphChunk.IsActive = true;
-        //         currentHighlightValue = graphChunk.BinaryVal;
-        //         haveGuessedThisHighlight = false;
-        //     }
-        //     // else if (go.transform.localPosition.x < -362f && graphChunk.IsActive)
-        //     // {
-        //     //     currentHighlightValue = -1;
-        //     //     graphChunk.SetColor(new Color (108f/255f, 92f/255f, 124f/255f));
-        //     //     graphChunk.IsActive = false;
-        //     //     graphChunk.BackImage.SetActive(false);
-        //     // }
     }
 
     public void StartGameIntro()
@@ -431,6 +370,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDLevelStart.GetComponent<MoveNormal>().MoveDown();
 
         HUDTutorial.GetComponent<MoveNormal>().MoveDown();
+        HUDTutorial2.GetComponent<MoveNormal>().MoveDown();
         HUDLevelComplete.GetComponent<MoveNormal>().MoveUp();
         HUDGameOver.GetComponent<MoveNormal>().MoveUp();
         HUDReplay.GetComponent<MoveNormal>().MoveDown();
@@ -473,7 +413,6 @@ public class GameSceneManagerDDR : MonoBehaviour
             UpdateIntroPanel();
             HUDLevelStart.GetComponent<MoveNormal>().MoveUp();
         }
-
     }
 
     void ClearGraphChunks()
@@ -536,12 +475,18 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDTutorial.GetComponent<MoveNormal>().MoveUp();
         audioManager.PlaySelectSound();
     }
+    public void SelectAbout2()
+    {
+        HUDTutorial.GetComponent<MoveNormal>().MoveDown();
+        HUDTutorial2.GetComponent<MoveNormal>().MoveUp();
+        audioManager.PlaySelectSound();
+    }
 
     public void SelectBack()
     {
         HUDTitle.GetComponent<MoveNormal>().MoveDown();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
-        HUDTutorial.GetComponent<MoveNormal>().MoveDown();
+        HUDTutorial2.GetComponent<MoveNormal>().MoveDown();
         audioManager.PlaySelectSound();
     }
 
@@ -549,23 +494,6 @@ public class GameSceneManagerDDR : MonoBehaviour
     {
         if (levelComplete)
             return;
-        // if (haveGuessedThisHighlight)
-        // {
-        //     Strike();
-        //     return;
-        // }
-        // else
-        // {
-        //     if (currentHighlightValue == 1)
-        //     {
-        //         Correct();
-        //     }
-        //     else
-        //     {
-        //         Strike();
-        //     }
-        // }
-        // haveGuessedThisHighlight = true;
         if (waitToHighlight)
         {
             audioManager.PlayInvalidSound();
@@ -581,22 +509,6 @@ public class GameSceneManagerDDR : MonoBehaviour
     {
         if (levelComplete)
             return;
-        // if (haveGuessedThisHighlight)
-        // {
-        //     Strike();
-        //     return;
-        // }
-        // else
-        // {
-        //     if (currentHighlightValue == 0)
-        //     {
-        //         Correct();
-        //     }
-        //     else
-        //     {
-        //         Strike();
-        //     }
-        // }
         if (waitToHighlight)
         {
             audioManager.PlayInvalidSound();
@@ -607,17 +519,6 @@ public class GameSceneManagerDDR : MonoBehaviour
         HUDUserText.text = HUDUserText.text + "0";
         IncrementGraphHighlight();
     }
-
-    // void Correct()
-    // {
-    //     Destroy(graphChunks[0]);
-    //     graphChunks.RemoveAt(0);
-    // }
-
-    // void Strike()
-    // {
-
-    // }
 
     void IncrementGraphHighlight()
     {
