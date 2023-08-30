@@ -344,7 +344,7 @@ public class GameSceneManagerDDR : MonoBehaviour
             if (!levelComplete && graphChunks[currentHighlightChar].transform.localPosition.x <= visibleHighlightPosMin)
             {
                 userChars.Add(-1);
-                HUDUserText.text = HUDUserText.text + "?";
+                HUDUserText.text = GenerateOutputString();
                 audioManager.PlayMissSound();
                 IncrementGraphHighlight();
             }
@@ -418,8 +418,8 @@ public class GameSceneManagerDDR : MonoBehaviour
 
         speed = startSpeed + (currentLevel * 15f);
         currentHighlightChar = 0;
-        HUDUserText.text = "";
         userChars.Clear();
+        HUDUserText.text = "<mspace=.5em>________________________________\n________________________________</mspace>";
         ClearGraphChunks();
         CreateScrollingGraph();
         UpdateCurrentHighlight();
@@ -531,6 +531,33 @@ public class GameSceneManagerDDR : MonoBehaviour
         audioManager.PlaySelectSound();
     }
 
+    string GenerateOutputString()
+    {
+        string userOutputString = "<mspace=.5em>";
+        for (int x = 0; x < 64; x++)
+        {
+            if (x < userChars.Count)
+            {
+                if (userChars[x] == -1)
+                    userOutputString = userOutputString + "?";
+                else if (userChars[x] == 0)
+                    userOutputString = userOutputString + "0";
+                else if (userChars[x] == 1)
+                    userOutputString = userOutputString + "1";
+            }
+            else
+            {
+                userOutputString = userOutputString + "_";
+            }
+            if (x == 31)
+            {
+                userOutputString = userOutputString + "\n";
+            }
+        }
+        userOutputString = userOutputString + "</mspace>";
+        return userOutputString;
+    }
+
     public void GuessOne()
     {
         if (levelComplete)
@@ -542,7 +569,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         }
         audioManager.PlaySelectSound();
         userChars.Add(1);
-        HUDUserText.text = HUDUserText.text + "1";
+        HUDUserText.text = GenerateOutputString();
         IncrementGraphHighlight();
     }
 
@@ -557,7 +584,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         }
         audioManager.PlaySelectSound();
         userChars.Add(0);
-        HUDUserText.text = HUDUserText.text + "0";
+        HUDUserText.text = GenerateOutputString();
         IncrementGraphHighlight();
     }
 
