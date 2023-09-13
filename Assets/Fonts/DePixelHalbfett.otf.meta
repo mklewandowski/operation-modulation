@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf6eab93b4c21f04d90004b242d50bc0
+guid: 67805072c9f3efc428da025fb61c5360
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Upheaval TT (BRK)
+  - DePixel
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
