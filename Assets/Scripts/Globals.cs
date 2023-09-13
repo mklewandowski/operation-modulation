@@ -20,6 +20,7 @@ public class Globals
     public static Language CurrentLanguage = Language.English;
 
     public const string LanguageStorageKey = "Language";
+    public const string AudioStorageKey = "Audio";
 
     public static void SaveIntToPlayerPrefs(string key, int val)
     {
@@ -35,5 +36,8 @@ public class Globals
     {
         int lang = Globals.LoadIntFromPlayerPrefs(Globals.LanguageStorageKey);
         Globals.CurrentLanguage = (Globals.Language)lang;
+
+        int aud = Globals.LoadIntFromPlayerPrefs(Globals.AudioStorageKey);
+        Globals.AudioOn = aud == 1 ? true : false;
     }
 }
