@@ -153,27 +153,27 @@ public class GameSceneManagerDDR : MonoBehaviour
             binaryImages[x] = new BinaryImage();
         }
         binaryImages[0].Title = "smile emoji";
-        binaryImages[0].TitleSP = "smile emoji";
+        binaryImages[0].TitleSP = "emoji de sonrisa";
         binaryImages[0].isASK = true;
         binaryImages[0].Bits = new int[64] {0,0,1,1,1,1,0,0,0,1,0,1,1,0,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0,0,0,0,1,1,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0};
-        binaryImages[1].Title = "heart";
-        binaryImages[1].TitleSP = "heart";
+        binaryImages[1].Title = "heart emoji";
+        binaryImages[1].TitleSP = "emoji de corazón";
         binaryImages[1].isASK = false;
         binaryImages[1].Bits = new int[64] {0,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0,0};
-        binaryImages[2].Title = "cat";
-        binaryImages[2].TitleSP = "cat";
+        binaryImages[2].Title = "cat emoji";
+        binaryImages[2].TitleSP = "emoji de gato";
         binaryImages[2].isASK = true;
         binaryImages[2].Bits = new int[64] {1,0,0,1,0,0,0,1,1,1,1,1,0,0,1,0,1,1,1,1,0,0,1,0,0,1,1,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0,1,0};
-        binaryImages[3].Title = "robot";
-        binaryImages[3].TitleSP = "robot";
+        binaryImages[3].Title = "robot emoji";
+        binaryImages[3].TitleSP = "emoji de robot";
         binaryImages[3].isASK = false;
         binaryImages[3].Bits = new int[64] {0,1,0,0,0,0,1,0,0,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,0,1,0,0,1,0,0,0,0,1,1,1,1,0,0};
-        binaryImages[4].Title = "space ship";
-        binaryImages[4].TitleSP = "space ship";
+        binaryImages[4].Title = "space ship emoji";
+        binaryImages[4].TitleSP = "emoji de nave espacial";
         binaryImages[4].isASK = false;
         binaryImages[4].Bits = new int[64] {0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,1};
-        binaryImages[5].Title = "ghost";
-        binaryImages[5].TitleSP = "ghost";
+        binaryImages[5].Title = "ghost emoji";
+        binaryImages[5].TitleSP = "emoji de fantasma";
         binaryImages[5].isASK = false;
         binaryImages[5].Bits = new int[64] {0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,0,0,1,0,0,1,0,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0};
     }
@@ -206,39 +206,38 @@ public class GameSceneManagerDDR : MonoBehaviour
     void UpdateIntroPanel()
     {
         HUDLevelStartImage.sprite = binaryImages[currentLevel].isASK ? ASKintroSprite : FSKintroSprite;
-        string introText = "A radio wave carrying the digital information of a " + binaryImages[currentLevel].Title + " is coming your way!\n\n";
-        introText = "";
+        string introText = "";
         if (Globals.CurrentLanguage == Globals.Language.English)
-        {
-            introText = "A radio wave carrying the digital information of a " + binaryImages[currentLevel].Title + " is coming your way!\n\n";
-            introText = introText + "Now YOU are the computer and must decode the digitally modulated carrier signal correctly!\n\n";
-            if (binaryImages[currentLevel].isASK)
-            {
-                introText = introText + "As the radio wave using amplitude key shifting comes in, decide if the waveform shows a 0 or a 1 based on its amplitude. White squares are represented as a 1. Black squares are represented as a 0. At the end we will compare your decoded image to the one sent!";
-            }
-            else
-            {
-                introText = introText + "As the radio wave using frequency key shifting comes in, decide if the waveform shows a 0 or a 1 based on its frequency. White squares are represented as a 1. Black squares are represented as a 0. At the end we will compare your decoded image to the one sent!";
-            } 
-        }
-        else
         {
             introText = "A radio wave carrying the digital information of a " + binaryImages[currentLevel].TitleSP + " is coming your way!\n\n";
             introText = introText + "Now YOU are the computer and must decode the digitally modulated carrier signal correctly!\n\n";
             if (binaryImages[currentLevel].isASK)
             {
-                introText = introText + "As the radio wave using amplitude key shifting comes in, decide if the waveform shows a 0 or a 1 based on its amplitude. White squares are represented as a 1. Black squares are represented as a 0. At the end we will compare your decoded image to the one sent!";
+                introText = introText + "As the radio wave using amplitude key shifting comes in, decide if the waveform shows a 0 or a 1 based on its amplitude. White squares are represented as a 1. Black squares are represented as a 0. At the end, we will compare your decoded image to the one sent!";
             }
             else
             {
-                introText = introText + "As the radio wave using frequency key shifting comes in, decide if the waveform shows a 0 or a 1 based on its frequency. White squares are represented as a 1. Black squares are represented as a 0. At the end we will compare your decoded image to the one sent!";
+                introText = introText + "As the radio wave using frequency key shifting comes in, decide if the waveform shows a 0 or a 1 based on its frequency. White squares are represented as a 1. Black squares are represented as a 0. At the end, we will compare your decoded image to the one sent!";
+            } 
+        }
+        else
+        {
+            introText = "¡Una onda de radio que tiene la información digital de un " + binaryImages[currentLevel].Title + " viene en camino!\n\n";
+            introText = introText + "¡Ahora TÚ eres la computadora y debes decodificar correctamente la onda portadora modulada digitalmente!\n\n";
+            if (binaryImages[currentLevel].isASK)
+            {
+                introText = introText + "Cuando entre la onda de radio que usa la modulación por desplazamiento de amplitud, decide si la forma de la onda muestra un 0 o un 1 basándote en su amplitud. Los cuadros blancos se representan como un 1. Los cuadros negros se representan como un 0. ¡Al final, compararemos tu imagen decodificada con la que se envió!";
+            }
+            else
+            {
+                introText = introText + "Cuando entre la onda de radio que usa la modulación por desplazamiento de frecuencia, decide si la forma de la onda muestra un 0 o un 1 basándote en su frecuencia. Los cuadros blancos se representan como un 1. Los cuadros negros se representan como un 0. ¡Al final, compararemos tu imagen decodificada con la que se envió!";
             } 
         }
         HUDLevelStartText.text = introText;
         if (Globals.CurrentLanguage == Globals.Language.English)
             HUDLevelStartTitleText.text = "LEVEL " + (currentLevel + 1).ToString();
         else
-            HUDLevelStartTitleText.text = "LEVEL " + (currentLevel + 1).ToString();
+            HUDLevelStartTitleText.text = "NIVEL " + (currentLevel + 1).ToString();
 
         for (int x = 0; x < MaxSquares; x++)
         {
@@ -302,12 +301,12 @@ public class GameSceneManagerDDR : MonoBehaviour
         if (Globals.CurrentLanguage == Globals.Language.English)
         {
             HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
-            HUDLevelButtonText.text = (currentLevel < 5 ? "NEXT LEVEL" : "HOME");
+            HUDLevelButtonText.text = (currentLevel < 5 ? "Next Level" : "Home");
         }
         else
         {
-            HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% accurate!";
-            HUDLevelButtonText.text = (currentLevel < 5 ? "NEXT LEVEL" : "HOME"); 
+            HUDLevelCompletePercent.text = ((int)((float)numCorrect / 64f * 100f)).ToString() + "% correcto";
+            HUDLevelButtonText.text = (currentLevel < 5 ? "Siguiente nivel" : "Inicio"); 
         }
     }
 

@@ -821,7 +821,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BACK
+  m_text: Home
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f834770c8700a64489f51ac2595b0532, type: 2}
   m_sharedMaterial: {fileID: 2318941190687226847, guid: f834770c8700a64489f51ac2595b0532, type: 2}
@@ -911,8 +911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TranslatedText:
-  - BACK
-  - BACK
+  - Home
+  - Inicio
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -1205,8 +1205,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - LEVEL COMPLETE!
-  - LEVEL COMPLETE!
+  - "\xA1Nivel completado!"
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -3411,7 +3411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - Your decoded image
-  - Your decoded image
+  - Tu imagen decodificada
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -3852,7 +3852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - Transmitted image
-  - Transmitted image
+  - Imagen transmitida
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -4130,6 +4130,7 @@ GameObject:
   - component: {fileID: 866938894}
   - component: {fileID: 866938896}
   - component: {fileID: 866938895}
+  - component: {fileID: 866938897}
   m_Layer: 5
   m_Name: TutorialText
   m_TagString: Untagged
@@ -4177,12 +4178,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Digital modulation is less affected by noise because it uses distinct steps
-    in either amplitude or frequency instead of the continuous range of values used
-    by analog modulation. This is why you can sometimes hear static on AM radio stations,
-    using analog modulation, when there's a lot of interference. Digital modulation
-    also allows for error correction, which can help to fix any mistakes that are
-    made during transmission. Play the parity bit interactive to learn more.
+  m_text: "Digital modulation is less affected by noise because it uses distinct
+    steps in either amplitude or frequency instead of the continuous range of values
+    used by analog modulation. A little noise won\u2019t really change how a receiver
+    interprets the big differences between 0s and 1s in a digitally modulated radio
+    wave.\\n\\nBut when many finer differences in the radio wave are needed to transmit
+    music, voices, or other data, a little noise can lead to problems. This is why
+    you can sometimes hear static on some AM radio stations that use analog modulation, 
+    when there's a lot of interference. Digital modulation also allows for error
+    correction, which can help to fix any mistakes that are made during transmission.
+    Play the Parity Blitz interactive to learn more."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a59d35a4058d2074f85d36e6778290a2, type: 2}
   m_sharedMaterial: {fileID: 4465753052954637598, guid: a59d35a4058d2074f85d36e6778290a2, type: 2}
@@ -4221,7 +4226,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -10
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -4259,6 +4264,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866938893}
   m_CullTransparentMesh: 1
+--- !u!114 &866938897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866938893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - "Digital modulation is less affected by noise because it uses distinct steps
+    in either amplitude or frequency instead of the continuous range of values used
+    by analog modulation. A little noise won\u2019t really change how a receiver
+    interprets the big differences between 0s and 1s in a digitally modulated radio
+    wave.\\n\\nBut when many finer differences in the radio wave are needed to transmit
+    music, voices, or other data, a little noise can lead to problems. This is why
+    you can sometimes hear static on some AM radio stations that use analog modulation, 
+    when there's a lot of interference. Digital modulation also allows for error
+    correction, which can help to fix any mistakes that are made during transmission.
+    Play the Parity Blitz interactive to learn more."
+  - "La modulaci\xF3n digital resulta menos afectada por el ruido porque usa pasos
+    distintos en amplitud o frecuencia en vez del rango de valores continuo que emplea
+    la modulaci\xF3n anal\xF3gica. Un poco de ruido no cambiar\xE1 realmente la forma
+    en la que un receptor interpreta las grandes diferencias entre los n\xFAmeros
+    0 y 1 en una onda de radio modulada digitalmente.\\n\\nPero cuando se necesitan
+    muchas diferencias m\xE1s finas en la onda de radio para transmitir m\xFAsica,
+    voces u otros datos, un poco de ruido puede causar problemas. Es por esto que
+    a veces se escucha est\xE1tica en algunas estaciones AM de radio cuando hay mucha
+    interferencia, ya que usan la modulaci\xF3n anal\xF3gica. La modulaci\xF3n digital
+    tambi\xE9n permite la correcci\xF3n de errores, lo cual puede ayudar a arreglar
+    cualquier error que ocurra durante una transmisi\xF3n. Juega el juego interactivo
+    \u201CBlitz de paridad\u201D para aprender m\xE1s."
+  AdjustFont: 0
+  FontSize: 0
+  LineSpacing: 0
 --- !u!1 &867224197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,7 +4652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - 0 = low amplitude\n1 = high amplitude
-  - 0 = low amplitude\n1 = high amplitude
+  - 0 = Baja amplitud\n1 = Alta amplitud
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -5033,7 +5076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - 0 = low frequency\n1 = high frequency
-  - 0 = low frequency\n1 = high frequency
+  - 0 = Baja frecuencia\n1 = Alta frecuencia
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -5183,6 +5226,7 @@ GameObject:
   - component: {fileID: 1030178590}
   - component: {fileID: 1030178592}
   - component: {fileID: 1030178591}
+  - component: {fileID: 1030178593}
   m_Layer: 5
   m_Name: IntroText (5)
   m_TagString: Untagged
@@ -5207,8 +5251,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 30}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 200, y: 40}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1030178591
 MonoBehaviour:
@@ -5307,6 +5351,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030178589}
   m_CullTransparentMesh: 1
+--- !u!114 &1030178593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030178589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - frequency key shifting
+  - "Modulaci\xF3n por desplazamiento de frecuencia"
+  AdjustFont: 1
+  FontSize: 22
+  LineSpacing: 0
 --- !u!1 &1041987660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5318,6 +5380,7 @@ GameObject:
   - component: {fileID: 1041987661}
   - component: {fileID: 1041987663}
   - component: {fileID: 1041987662}
+  - component: {fileID: 1041987664}
   m_Layer: 5
   m_Name: TutorialText
   m_TagString: Untagged
@@ -5342,7 +5405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 280}
+  m_AnchoredPosition: {x: 0, y: 290}
   m_SizeDelta: {x: 960, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041987662
@@ -5447,6 +5510,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041987660}
   m_CullTransparentMesh: 1
+--- !u!114 &1041987664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041987660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - Digital modulation is a method used to transform digital bits of information
+    (0s and 1s) into radio waves that can be transmitted over long distances. A radio
+    wave, called a <color=#2E2524><b>carrier signal</b></color>, is changed, or <color=#2E2524><b>modulated</b></color>,
+    in response to the digital bits being transmitted. The <color=#2E2524><b>amplitude</b></color>
+    or the <color=#2E2524><b>frequency</b></color> of the carrier signal can be changed
+    to represent the specific 0s or 1s of the digital bits.
+  - "La modulaci\xF3n digital es un m\xE9todo usado para transformar bits digitales
+    de informaci\xF3n (0 y 1) en ondas de radio que pueden transmitirse a larga distancia.
+    Una onda de radio llamada <color=#2E2524><b>\u201Conda portadora\u201D</b></color>
+    se cambia o se modula en respuesta a los bits digitales que se transmiten. La
+    amplitud o la frecuencia de la onda portadora puede cambiarse para representar
+    los 0 o los 1 espec\xEDficos de los bits digitales."
+  AdjustFont: 1
+  FontSize: 28
+  LineSpacing: 0
 --- !u!1 &1076158329
 GameObject:
   m_ObjectHideFlags: 0
@@ -6510,7 +6601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NEXT
+  m_text: Next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f834770c8700a64489f51ac2595b0532, type: 2}
   m_sharedMaterial: {fileID: 2318941190687226847, guid: f834770c8700a64489f51ac2595b0532, type: 2}
@@ -6600,8 +6691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TranslatedText:
-  - NEXT
-  - NEXT
+  - Next
+  - 'Siguiente '
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -6855,7 +6946,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 300, y: 90}
+  m_SizeDelta: {x: 400, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1381679981
 MonoBehaviour:
@@ -7116,6 +7207,7 @@ GameObject:
   - component: {fileID: 1427125742}
   - component: {fileID: 1427125744}
   - component: {fileID: 1427125743}
+  - component: {fileID: 1427125745}
   m_Layer: 5
   m_Name: IntroText (4)
   m_TagString: Untagged
@@ -7140,8 +7232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 30}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: -200, y: 40}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427125743
 MonoBehaviour:
@@ -7240,6 +7332,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427125741}
   m_CullTransparentMesh: 1
+--- !u!114 &1427125745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427125741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - amplitude key shifting
+  - "Modulaci\xF3n por desplazamiento de amplitud"
+  AdjustFont: 1
+  FontSize: 22
+  LineSpacing: 0
 --- !u!1 &1450162640
 GameObject:
   m_ObjectHideFlags: 0
@@ -7275,7 +7385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -134, y: -100}
+  m_AnchoredPosition: {x: -134, y: -120}
   m_SizeDelta: {x: 900, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450162642
@@ -7530,7 +7640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f834770c8700a64489f51ac2595b0532, type: 2}
   m_sharedMaterial: {fileID: 2318941190687226847, guid: f834770c8700a64489f51ac2595b0532, type: 2}
@@ -7620,8 +7730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TranslatedText:
-  - PLAY
-  - PLAY
+  - Play
+  - Jugar
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -7794,7 +7904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -87, y: -188}
+  m_AnchoredPosition: {x: -87, y: -205}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1559573077
@@ -8520,7 +8630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIT
+  m_text: Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f834770c8700a64489f51ac2595b0532, type: 2}
   m_sharedMaterial: {fileID: 2318941190687226847, guid: f834770c8700a64489f51ac2595b0532, type: 2}
@@ -8610,8 +8720,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TranslatedText:
-  - QUIT
-  - QUIT
+  - Quit
+  - Salir
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -8970,6 +9080,7 @@ GameObject:
   - component: {fileID: 1705333102}
   - component: {fileID: 1705333104}
   - component: {fileID: 1705333103}
+  - component: {fileID: 1705333105}
   m_Layer: 5
   m_Name: GOText
   m_TagString: Untagged
@@ -9094,6 +9205,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705333101}
   m_CullTransparentMesh: 1
+--- !u!114 &1705333105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705333101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14ae751f8a9b943ba7fdb16d218eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedText:
+  - LEVEL COMPLETE!
+  - "\xA1Nivel completado!"
+  AdjustFont: 0
+  FontSize: 0
+  LineSpacing: 0
 --- !u!1 &1720715263
 GameObject:
   m_ObjectHideFlags: 0
@@ -15018,7 +15147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - How did you do?
-  - How did you do?
+  - "\xBFC\xF3mo te fu\xE9?"
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
