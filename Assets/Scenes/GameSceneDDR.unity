@@ -3892,7 +3892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 740, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &861489188
@@ -4006,7 +4006,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TranslatedText:
   - Decode images sent over radio waves to see how YOU perform as a computer!
-  - Decode images sent over radio waves to see how YOU perform as a computer!
+  - "\xA1Decodifica im\xE1genes enviadas por ondas de radio para ver c\xF3mo te desempe\xF1as
+    T\xDA como una computadora!"
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -5581,7 +5582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f834770c8700a64489f51ac2595b0532, type: 2}
   m_sharedMaterial: {fileID: 2318941190687226847, guid: f834770c8700a64489f51ac2595b0532, type: 2}
@@ -5671,8 +5672,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TranslatedText:
-  - PLAY
-  - PLAY
+  - Play
+  - Jugar
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -6004,8 +6005,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -300}
-  m_SizeDelta: {x: 350, y: 90}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 400, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204666314
 MonoBehaviour:
@@ -6642,7 +6643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -300}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 350, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316088917
@@ -7009,7 +7010,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME GUIDE
+  m_text: Game Guide
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f834770c8700a64489f51ac2595b0532, type: 2}
   m_sharedMaterial: {fileID: 2318941190687226847, guid: f834770c8700a64489f51ac2595b0532, type: 2}
@@ -7099,8 +7100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TranslatedText:
-  - GAME GUIDE
-  - GAME GUIDE
+  - Game Guide
+  - Guia del juego
   AdjustFont: 0
   FontSize: 0
   LineSpacing: 0
@@ -7661,7 +7662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 410, y: 310}
+  m_AnchoredPosition: {x: 410, y: -310}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545549545
@@ -8283,6 +8284,7 @@ GameObject:
   - component: {fileID: 1637304600}
   - component: {fileID: 1637304599}
   - component: {fileID: 1637304601}
+  - component: {fileID: 1637304602}
   m_Layer: 5
   m_Name: TitleImage
   m_TagString: Untagged
@@ -8368,6 +8370,21 @@ MonoBehaviour:
   movingDownVelocity: -1500
   movingLeftVelocity: -1500
   movingRightVelocity: 1500
+--- !u!114 &1637304602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637304597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d8b206350e848429283081959a6a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TranslatedImage:
+  - {fileID: 21300000, guid: a61f6e7e953baee4fa724c0796eeae4d, type: 3}
+  - {fileID: 21300000, guid: 9447d51cdeb5cda41bd281b84e652af3, type: 3}
 --- !u!1 &1647379885
 GameObject:
   m_ObjectHideFlags: 0
@@ -8863,7 +8880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -425, y: 300}
+  m_AnchoredPosition: {x: -425, y: -300}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1695018737
