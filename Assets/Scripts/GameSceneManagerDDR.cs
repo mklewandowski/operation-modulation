@@ -138,6 +138,7 @@ public class GameSceneManagerDDR : MonoBehaviour
         SelectLanguage(Globals.CurrentLanguage);
 
         audioManager = this.GetComponent<AudioManager>();
+        SetAudio();
         HUDTitle.GetComponent<MoveNormal>().MoveDown();
         HUDIntroAndStart.GetComponent<MoveNormal>().MoveUp();
 
@@ -610,6 +611,12 @@ public class GameSceneManagerDDR : MonoBehaviour
     public void ToggleAudio()
     {
         Globals.AudioOn = !Globals.AudioOn;
+        Globals.SaveIntToPlayerPrefs(Globals.AudioStorageKey, Globals.AudioOn ? 1 : 0);
+        SetAudio();
+    }
+
+    public void SetAudio()
+    {
         if (Globals.AudioOn)
         {
             audioManager.StartMusic();
