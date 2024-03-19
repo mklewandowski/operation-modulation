@@ -1,5 +1,17 @@
 # operation-modulation
-Operation Modulation is an arcade style game where players decode pixel art images sent over waveforms and encoded using modulation techniques.
+Operation Modulation is an fast-paced arcade game where players decode emoji images sent via modulation encoded radio signals.
+
+## Modulation
+Modulation is used to transmit information over radio waves. Information like text and images is first converted to binary numbers (0s and 1s). Binary numbers are then represented in the radio waves using different graph shapes. The shape of the graph determines if a 0 or a 1 is being sent.
+
+### Modulation Types
+- Amplitude shift keying is a type of modulation where 0's are represented with a low amplitude signal and 1's are represented with a high amplitude signal.
+- Frequency shift keying is a type of modulation where 0's are represented with a low frequency signal and 1's are represented with a high frequency signal.
+
+## Gameplay
+In each level an emoji image is converted into binary values (0's and 1's) and then displayed as a modulated radio signal. The player must decode the signal to reveal the emoji image. As the radio signal moves across the screen, the player decides if each chunk of the signal is a 0 or a 1. At the end of the level, the image decoded by the player is compared to the actual image.
+
+![Operation Modulation gameplay](https://github.com/mklewandowski/operation-modulation/blob/main/operation-modulation-gameplay.gif?raw=true)
 
 ## Supported Platforms
 Operation Modulation is designed for use on multiple platforms including:
@@ -8,7 +20,7 @@ Operation Modulation is designed for use on multiple platforms including:
 ## Running Locally
 Use the following steps to run locally:
 1. Clone this repo
-2. Open repo folder using Unity 2021.3.27f1
+2. Open repo folder using Unity 2021.3.35f1
 3. Install Text Mesh Pro
 
 ## Building the Project
